@@ -1,0 +1,707 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea & Tips - Dunia Kita</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f0ff, #ffffff);
+            color: #333;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #6a1b9a, #8e44ad);
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 55px 20px 40px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: #6a1b9a;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        /* DAILY TIP */
+        .daily-section {
+            max-width: 900px;
+            margin: 10px auto 50px;
+            padding: 0 20px;
+        }
+
+        .tip-box {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(106,27,154,0.15);
+            border: 2px solid #eadcff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tip-box::before {
+            content: "💜";
+            position: absolute;
+            font-size: 100px;
+            opacity: 0.05;
+            top: -20px;
+            left: -10px;
+        }
+
+        .tip-label {
+            display: inline-block;
+            background: #f1e6ff;
+            color: #6a1b9a;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .tip-number {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .tip-title {
+            font-size: 28px;
+            color: #6a1b9a;
+            margin-bottom: 15px;
+        }
+
+        .tip-text {
+            font-size: 19px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 25px;
+        }
+
+        .tip-quote {
+            background: #faf7ff;
+            border-left: 5px solid #8e44ad;
+            padding: 18px 20px;
+            margin: 20px 0 30px;
+            text-align: left;
+            font-style: italic;
+            color: #6a1b9a;
+            line-height: 1.7;
+            border-radius: 8px;
+        }
+
+        .next-btn {
+            border: none;
+            background: linear-gradient(135deg, #6a1b9a, #9b59b6);
+            color: white;
+            padding: 13px 28px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 18px rgba(106,27,154,0.3);
+        }
+
+        /* TIPS GRID */
+        .section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            color: #6a1b9a;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .tip-card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            transition: 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(106,27,154,0.12);
+        }
+
+        .tip-icon {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .tip-card h3 {
+            color: #6a1b9a;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .tip-card p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* CHANGE SECTION */
+        .change-section {
+            max-width: 900px;
+            margin: 10px auto 60px;
+            padding: 0 20px;
+        }
+
+        .change-box {
+            background: linear-gradient(135deg, #6a1b9a, #9b59b6);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(106,27,154,0.2);
+        }
+
+        .change-box h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .change-box p {
+            line-height: 1.8;
+            font-size: 17px;
+            max-width: 700px;
+            margin: auto auto 20px;
+        }
+
+        .change-box button {
+            background: white;
+            color: #6a1b9a;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .change-box button:hover {
+            transform: scale(1.05);
+        }
+
+        #changeMessage {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            display: none;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #4a148c;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .tip-box {
+                padding: 30px 20px;
+            }
+
+            .tip-title {
+                font-size: 23px;
+            }
+
+            .tip-text {
+                font-size: 17px;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">🌈 Dunia Kita</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="belajar.html">Belajar</a>
+        <a href="permainan.html">Permainan</a>
+        <a href="kuiz.html">Kuiz</a>
+        <a href="tips.html" class="active">Tips</a>
+        <a href="resipi.html">Resipi</a>
+        <a href="catatan.html">Catatan</a>
+    </nav>
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+    <h1>💡 Idea & Tips Kehidupan</h1>
+
+    <p>
+        Kadang-kadang kita tidak perlukan jawapan yang besar.
+        Kita cuma perlukan satu kata-kata yang membuatkan kita
+        berani untuk bangun dan mencuba lagi.
+    </p>
+</section>
+
+
+<!-- TIP RANDOM -->
+<section class="daily-section">
+
+    <div class="tip-box">
+
+        <div class="tip-label">✨ Tip Untuk Hari Ini</div>
+
+        <div class="tip-number" id="tipNumber">
+            Tip 1 daripada 10
+        </div>
+
+        <h2 class="tip-title" id="tipTitle">
+            Jangan tunggu hidup sempurna
+        </h2>
+
+        <p class="tip-text" id="tipText">
+            Mulakan dengan apa yang ada hari ini.
+            Perubahan besar selalu bermula daripada satu langkah kecil.
+        </p>
+
+        <div class="tip-quote" id="tipQuote">
+            “Kamu tak perlu melihat seluruh tangga.
+            Cukup ambil langkah pertama.”
+        </div>
+
+        <button class="next-btn" onclick="nextTip()">
+            💜 Tip Seterusnya
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- 10 TIPS -->
+<section class="section">
+
+    <div class="section-title">
+        <h2>🌟 10 Tips Untuk Hidup Lebih Baik</h2>
+        <p>Baca perlahan-lahan. Mungkin ada satu yang sedang kamu perlukan.</p>
+    </div>
+
+    <div class="tips-grid">
+
+        <div class="tip-card">
+            <div class="tip-icon">🌱</div>
+            <h3>1. Jangan Tunggu Hidup Sempurna</h3>
+            <p>
+                Mulakan dengan apa yang ada hari ini.
+                Perubahan besar selalu bermula daripada satu langkah kecil.
+                Jangan tunggu masa yang sempurna kerana masa yang sempurna
+                mungkin tidak pernah datang.
+            </p>
+        </div>
+
+
+        <div class="tip-card">
+            <div class="tip-icon">❤️</div>
+            <h3>2. Hargai Diri Sendiri</h3>
+            <p>
+                Jangan terlalu keras kepada diri sendiri.
+                Kamu mungkin belum sampai ke tempat yang kamu impikan,
+                tetapi jangan lupa bahawa kamu sudah jauh daripada tempat
+                kamu bermula.
+            </p>
+        </div>
+
+
+        <div class="tip-card">
+            <div class="tip-icon">🕊️</div>
+            <h3>3. Jangan Hidup Hanya Untuk Orang Lain</h3>
+            <p>
+                Membantu orang adalah perkara yang baik.
+                Tetapi jangan sampai kamu terlalu sibuk menjaga hati orang
+                sehingga hati sendiri selalu terluka.
+                Belajarlah berkata “tidak” apabila perlu.
+            </p>
+        </div>
+
+
+        <div class="tip-card">
+            <div class="tip-icon">💪</div>
+            <h3>4. Kalau Penat, Berehat</h3>
+            <p>
+                Tidak mengapa kalau hari ini kamu tidak mampu melakukan
+                semuanya. Berehat bukan bermaksud kalah.
+                Kadang-kadang kita cuma perlukan sedikit masa untuk
+                mengumpulkan tenaga sebelum berjalan semula.
+            </p>
+        </div>
+
+
+        <div class="tip-card">
+            <div class="tip-icon">🚪</div>
+            <h3>5. Berani Melepaskan</h3>
+            <p>
+                Tidak semua perkara yang kita sayang perlu kita pertahankan.
+                Ada orang, keadaan dan perkara yang perlu kita lepaskan
+                supaya kita boleh memberi ruang kepada sesuatu yang lebih
+                baik untuk datang dalam hidup.
+            </p>
+        </div>
+
+
+        <div class="tip-card">
+            <div class="tip-icon">🌟</div>
+            <h3>6. Jangan Bandingkan Diri</h3>
+            <p>
+                Jangan bandingkan permulaan kamu dengan kejayaan orang lain.
+                Setiap orang mempunyai perjalanan yang berbeza.
+                Fokus kepada diri sendiri dan cuba menjadi lebih baik
+                daripada diri kamu semalam.
+            </p>
+        </div>
+
+
+        <div class="tip-card">
+            <div class="tip-icon">💰</div>
+            <h3>7. Hidup Mengikut Kemampuan</h3>
+            <p>
+                Jangan paksa diri untuk kelihatan hebat di mata orang.
+                Tidak perlu memiliki semuanya untuk hidup bahagia.
+                Ketenangan fikiran jauh lebih berharga daripada hidup
+                semata-mata untuk menunjuk kepada orang lain.
+            </p>
+        </div>
+
+
+        <div class="tip-card">
+            <div class="tip-icon">🧠</div>
+            <h3>8. Jangan Takut Membuat Kesilapan</h3>
+            <p>
+                Kesilapan bukan bukti bahawa kamu gagal.
+                Kesilapan adalah pengalaman yang mengajar kamu bagaimana
+                untuk menjadi lebih kuat, lebih matang dan lebih bijak.
+            </p>
+        </div>
+
+
+        <div class="tip-card">
+            <div class="tip-icon">🤝</div>
+            <h3>9. Hargai Orang Yang Ada Ketika Susah</h3>
+            <p>
+                Ketika kita senang, ramai orang boleh datang.
+                Tetapi orang yang tetap berada di sisi kita ketika kita
+                jatuh adalah orang yang sangat berharga.
+                Jangan lupa menghargai mereka.
+            </p>
+        </div>
+
+
+        <div class="tip-card">
+            <div class="tip-icon">🔥</div>
+            <h3>10. Jangan Tunggu Esok</h3>
+            <p>
+                Kalau ada sesuatu yang kamu mahu ubah, mulakan hari ini.
+                Tidak perlu berubah semuanya sekaligus.
+                Cukup satu langkah kecil hari ini, kemudian satu lagi esok.
+                Lama-kelamaan kamu akan sedar bahawa hidup kamu sudah berubah.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SECTION SEMANGAT BERUBAH -->
+<section class="change-section">
+
+    <div class="change-box">
+
+        <h2>🔥 Kamu Nak Berubah?</h2>
+
+        <p>
+            Jangan fikir kamu sudah terlambat.
+            Jangan fikir kamu tidak cukup baik.
+            Jangan fikir hidup kamu tidak boleh berubah.
+
+            <br><br>
+
+            Selagi kamu masih mahu mencuba,
+            masih ada harapan untuk menjadi lebih baik.
+
+            <br><br>
+
+            <strong>
+                Perubahan tidak perlu bermula dengan langkah yang besar.
+                Ia cuma perlu bermula.
+            </strong>
+        </p>
+
+        <button onclick="showChangeMessage()">
+            💜 Saya Nak Berubah
+        </button>
+
+        <div id="changeMessage"></div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+    <p>🌈 Dunia Kita</p>
+    <p>Belajar • Bermain • Berkongsi • Berubah</p>
+    <p>© 2026 Dunia Kita</p>
+</footer>
+
+
+<script>
+
+    /* ================================
+       DATA 10 TIPS
+    ================================= */
+
+    const tips = [
+
+        {
+            title: "🌱 Jangan Tunggu Hidup Sempurna",
+            text: "Mulakan dengan apa yang ada hari ini. Perubahan besar selalu bermula daripada satu langkah kecil.",
+            quote: "“Kamu tak perlu melihat seluruh tangga. Cukup ambil langkah pertama.”"
+        },
+
+        {
+            title: "❤️ Hargai Diri Sendiri",
+            text: "Jangan terlalu keras kepada diri sendiri. Kamu mungkin belum sampai ke tempat yang kamu impikan, tetapi kamu sudah jauh daripada tempat kamu bermula.",
+            quote: "“Jangan hina perjalananmu hanya kerana kamu belum sampai ke destinasi.”"
+        },
+
+        {
+            title: "🕊️ Jangan Hidup Hanya Untuk Orang Lain",
+            text: "Membantu orang adalah perkara yang baik. Tetapi jangan sampai kamu terlalu sibuk menjaga hati orang sehingga hati sendiri selalu terluka.",
+            quote: "“Menjaga diri sendiri bukan pentingkan diri. Ia adalah satu bentuk kasih kepada diri.”"
+        },
+
+        {
+            title: "💪 Kalau Penat, Berehat",
+            text: "Tidak mengapa kalau hari ini kamu tidak mampu melakukan semuanya. Berehat bukan bermaksud kalah.",
+            quote: "“Kamu boleh berhenti sekejap tanpa perlu berhenti selamanya.”"
+        },
+
+        {
+            title: "🚪 Berani Melepaskan",
+            text: "Tidak semua perkara yang kita sayang perlu kita pertahankan. Ada perkara yang perlu dilepaskan supaya kita boleh berkembang.",
+            quote: "“Kadang-kadang melepaskan bukan kehilangan. Ia adalah cara untuk menyelamatkan diri.”"
+        },
+
+        {
+            title: "🌟 Jangan Bandingkan Diri",
+            text: "Jangan bandingkan permulaan kamu dengan kejayaan orang lain. Setiap orang mempunyai perjalanan yang berbeza.",
+            quote: "“Satu-satunya orang yang perlu kamu kalahkan ialah diri kamu yang semalam.”"
+        },
+
+        {
+            title: "💰 Hidup Mengikut Kemampuan",
+            text: "Tak perlu nampak kaya untuk bahagia. Ketenangan hidup lebih berharga daripada hidup untuk membuktikan sesuatu kepada orang lain.",
+            quote: "“Lebih baik hidup sederhana tetapi tenang daripada hidup mewah tetapi sentiasa tertekan.”"
+        },
+
+        {
+            title: "🧠 Jangan Takut Membuat Kesilapan",
+            text: "Kesilapan bukan bukti kamu gagal. Ia adalah guru yang mengajar kamu bagaimana untuk menjadi lebih kuat dan lebih bijak.",
+            quote: "“Jatuh bukan masalah. Yang penting ialah kamu memilih untuk bangun semula.”"
+        },
+
+        {
+            title: "🤝 Hargai Orang Yang Ada Ketika Susah",
+            text: "Ketika kita senang, ramai boleh datang. Tetapi orang yang tetap bersama ketika kita jatuh adalah orang yang patut kita hargai.",
+            quote: "“Jangan tunggu kehilangan seseorang baru kamu sedar betapa berharganya dia.”"
+        },
+
+        {
+            title: "🔥 Jangan Tunggu Esok",
+            text: "Kalau ada sesuatu yang kamu mahu ubah, mulakan hari ini. Tidak perlu sempurna. Cukup satu langkah.",
+            quote: "“Suatu hari nanti kamu akan berterima kasih kepada diri sendiri kerana tidak berputus asa hari ini.”"
+        }
+
+    ];
+
+
+    let currentTip = 0;
+
+
+    /* ================================
+       PAPAR TIP
+    ================================= */
+
+    function displayTip(index) {
+
+        document.getElementById("tipNumber").innerText =
+            "Tip " + (index + 1) + " daripada " + tips.length;
+
+        document.getElementById("tipTitle").innerText =
+            tips[index].title;
+
+        document.getElementById("tipText").innerText =
+            tips[index].text;
+
+        document.getElementById("tipQuote").innerText =
+            tips[index].quote;
+    }
+
+
+    /* ================================
+       TIP SETERUSNYA
+    ================================= */
+
+    function nextTip() {
+
+        let newTip;
+
+        do {
+            newTip = Math.floor(Math.random() * tips.length);
+        } while (newTip === currentTip && tips.length > 1);
+
+        currentTip = newTip;
+
+        displayTip(currentTip);
+    }
+
+
+    /* ================================
+       BUTTON "SAYA NAK BERUBAH"
+    ================================= */
+
+    function showChangeMessage() {
+
+        const message = document.getElementById("changeMessage");
+
+        const messages = [
+            "🌱 Satu langkah hari ini sudah cukup. Jangan berhenti.",
+            "💪 Kamu lebih kuat daripada yang kamu fikirkan.",
+            "❤️ Jangan putus asa dengan diri sendiri.",
+            "🔥 Hari ini mungkin kecil, tetapi usaha hari ini boleh mengubah masa depan.",
+            "🌈 Percayalah, perubahan itu bermula apabila kamu memilih untuk mencuba.",
+            "✨ Kamu tidak perlu menjadi sempurna. Kamu cuma perlu terus bergerak."
+        ];
+
+        const randomMessage =
+            messages[Math.floor(Math.random() * messages.length)];
+
+        message.innerText = randomMessage;
+        message.style.display = "block";
+    }
+
+
+    /* ================================
+       PAPAR TIP PERTAMA
+    ================================= */
+
+    displayTip(currentTip);
+
+</script>
+
+</body>
+</html>
+```

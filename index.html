@@ -1,0 +1,1474 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dunia Kita 🌈</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f3ff;
+            color: #333;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 9px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.20);
+        }
+
+        nav a.active {
+            background: rgba(255,255,255,0.25);
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            text-align: center;
+            padding: 75px 20px;
+            background: linear-gradient(135deg, #ede7f6, #f8f4ff);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: #6a1b9a;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .hero-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 13px 25px;
+            background: #7b2cbf;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            background: #5a189a;
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        section {
+            padding: 55px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            color: #6a1b9a;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+
+        /* =========================
+           MENU AKTIVITI
+        ========================= */
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: #c77dff;
+            box-shadow: 0 10px 25px rgba(123,44,191,0.18);
+        }
+
+        .card .icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #6a1b9a;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           CABARAN HARI INI
+        ========================= */
+
+        .challenge-section {
+            background: white;
+        }
+
+        .challenge-box {
+            max-width: 850px;
+            margin: auto;
+            background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+            color: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(123,44,191,0.20);
+        }
+
+        .challenge-label {
+            display: inline-block;
+            background: rgba(255,255,255,0.18);
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .challenge-box h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .challenge-box p {
+            line-height: 1.6;
+        }
+
+        .question-box {
+            background: white;
+            color: #333;
+            border-radius: 18px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        .question-box h3 {
+            color: #6a1b9a;
+            font-size: 20px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .option-btn {
+            border: 2px solid #e5d5f8;
+            background: #faf7ff;
+            color: #555;
+            padding: 13px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .option-btn:hover {
+            border-color: #9d4edd;
+            background: #f3e8ff;
+        }
+
+        .option-btn.correct {
+            background: #d8f8df;
+            border-color: #35a854;
+            color: #176b2c;
+        }
+
+        .option-btn.wrong {
+            background: #ffe0e0;
+            border-color: #e53935;
+            color: #a51f1f;
+        }
+
+        .option-btn:disabled {
+            cursor: default;
+        }
+
+        .challenge-result {
+            margin-top: 18px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+            min-height: 24px;
+        }
+
+        .new-question-btn {
+            display: block;
+            margin: 20px auto 0;
+            border: none;
+            background: #7b2cbf;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .new-question-btn:hover {
+            background: #5a189a;
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           AKTIVITI RAWAK
+        ========================= */
+
+        .random-section {
+            background: #f7f3ff;
+        }
+
+        .random-box {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+        }
+
+        .random-icon {
+            font-size: 60px;
+            margin-bottom: 12px;
+        }
+
+        .random-box h2 {
+            color: #6a1b9a;
+            margin-bottom: 10px;
+        }
+
+        .random-box p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .random-result {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 18px;
+            background: #f3e8ff;
+        }
+
+        .random-result h3 {
+            color: #6a1b9a;
+            margin-bottom: 8px;
+            font-size: 22px;
+        }
+
+        .random-result p {
+            margin-bottom: 15px;
+        }
+
+        .random-link {
+            display: inline-block;
+            background: #7b2cbf;
+            color: white;
+            text-decoration: none;
+            padding: 11px 22px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .random-button {
+            margin-top: 22px;
+            border: none;
+            background: #7b2cbf;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .random-button:hover {
+            background: #5a189a;
+            transform: scale(1.03);
+        }
+
+
+        /* =========================
+           STATISTIK
+        ========================= */
+
+        .stats {
+            max-width: 850px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 18px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+        }
+
+        .stat-card .stat-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .stat-number {
+            font-size: 27px;
+            font-weight: bold;
+            color: #7b2cbf;
+        }
+
+        .stat-card p {
+            color: #666;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           INFO
+        ========================= */
+
+        .info-box {
+            max-width: 850px;
+            margin: auto;
+            background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+            color: white;
+            border-radius: 22px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(123,44,191,0.2);
+        }
+
+        .info-box h2 {
+            margin-bottom: 12px;
+        }
+
+        .info-box p {
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #35105c;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 20px;
+        }
+
+        footer p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .activity-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .activity-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .challenge-box,
+            .random-box {
+                padding: 25px 18px;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            nav a {
+                font-size: 13px;
+                padding: 7px 9px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        🌈 Dunia Kita
+    </div>
+
+    <nav>
+
+        <a href="index.html" class="active">Home</a>
+
+        <a href="belajar.html">
+            Belajar
+        </a>
+
+        <a href="permainan.html">
+            Permainan
+        </a>
+
+        <a href="kuiz.html">
+            Kuiz
+        </a>
+
+        <a href="tips.html">
+            Tips
+        </a>
+
+        <a href="resipi.html">
+            Resipi
+        </a>
+
+        <a href="catatan.html">
+            Catatan
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<div class="hero">
+
+    <h1>
+        Selamat Datang ke Dunia Kita 🌎
+    </h1>
+
+    <p>
+        Tempat untuk belajar, bermain, mencuba perkara baharu
+        dan mendapatkan inspirasi setiap hari.
+    </p>
+
+    <a href="#aktiviti" class="hero-button">
+        🚀 Mula Terokai
+    </a>
+
+</div>
+
+
+
+<!-- =========================
+     MENU AKTIVITI
+========================= -->
+
+<section id="aktiviti">
+
+    <div class="section-title">
+
+        <h2>
+            🌟 Terokai Dunia Kita
+        </h2>
+
+        <p>
+            Pilih aktiviti yang anda mahu hari ini
+        </p>
+
+    </div>
+
+
+    <div class="activity-grid">
+
+
+        <!-- BELAJAR -->
+
+        <a href="belajar.html" class="card">
+
+            <div class="icon">
+                📚
+            </div>
+
+            <h3>
+                Belajar
+            </h3>
+
+            <p>
+                Temui fakta menarik dan ilmu baharu
+                dalam pelbagai bidang.
+            </p>
+
+        </a>
+
+
+
+        <!-- PERMAINAN -->
+
+        <a href="permainan.html" class="card">
+
+            <div class="icon">
+                🎮
+            </div>
+
+            <h3>
+                Permainan
+            </h3>
+
+            <p>
+                Main permainan yang menyeronokkan
+                dan sesuai untuk remaja.
+            </p>
+
+        </a>
+
+
+
+        <!-- KUIZ -->
+
+        <a href="kuiz.html" class="card">
+
+            <div class="icon">
+                🧠
+            </div>
+
+            <h3>
+                Kuiz
+            </h3>
+
+            <p>
+                Uji pengetahuan anda dengan
+                pelbagai soalan menarik.
+            </p>
+
+        </a>
+
+
+
+        <!-- TIPS -->
+
+        <a href="tips.html" class="card">
+
+            <div class="icon">
+                💡
+            </div>
+
+            <h3>
+                Idea & Tips
+            </h3>
+
+            <p>
+                Dapatkan tip kehidupan dan kata-kata
+                yang memberi inspirasi.
+            </p>
+
+        </a>
+
+
+
+        <!-- RESIPI -->
+
+        <a href="resipi.html" class="card">
+
+            <div class="icon">
+                🍳
+            </div>
+
+            <h3>
+                Resipi
+            </h3>
+
+            <p>
+                Cuba resipi mudah dan menarik
+                untuk dibuat sendiri.
+            </p>
+
+        </a>
+
+
+
+        <!-- CATATAN -->
+
+        <a href="catatan.html" class="card">
+
+            <div class="icon">
+                📝
+            </div>
+
+            <h3>
+                Catatan
+            </h3>
+
+            <p>
+                Simpan idea, fikiran dan catatan
+                anda sendiri.
+            </p>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CABARAN HARI INI
+========================= -->
+
+<section class="challenge-section">
+
+    <div class="section-title">
+
+        <h2>
+            🎯 Cabaran Hari Ini
+        </h2>
+
+        <p>
+            Cuba jawab satu soalan sebelum melihat jawapan!
+        </p>
+
+    </div>
+
+
+    <div class="challenge-box">
+
+        <span class="challenge-label">
+            🔥 Cabaran Rawak
+        </span>
+
+        <h2>
+            Uji Minda Anda!
+        </h2>
+
+        <p>
+            Soalan akan berubah secara rawak.
+            Cuba nasib anda dan lihat sama ada anda boleh
+            menjawab dengan betul.
+        </p>
+
+
+        <div class="question-box">
+
+            <h3 id="challengeQuestion">
+                Soalan sedang dimuatkan...
+            </h3>
+
+
+            <div class="options" id="challengeOptions">
+            </div>
+
+
+            <div
+                class="challenge-result"
+                id="challengeResult">
+            </div>
+
+
+            <button
+                class="new-question-btn"
+                onclick="newChallenge()">
+
+                🔄 Soalan Lain
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     AKTIVITI RAWAK
+========================= -->
+
+<section class="random-section">
+
+    <div class="section-title">
+
+        <h2>
+            🎲 Tak Tahu Nak Buat Apa?
+        </h2>
+
+        <p>
+            Biar Dunia Kita pilihkan aktiviti untuk anda!
+        </p>
+
+    </div>
+
+
+    <div class="random-box">
+
+        <div class="random-icon">
+            🎲
+        </div>
+
+        <h2>
+            Pilihkan Aktiviti Untuk Saya
+        </h2>
+
+        <p>
+            Klik butang di bawah dan kami akan pilih
+            satu aktiviti secara rawak untuk anda.
+        </p>
+
+
+        <button
+            class="random-button"
+            onclick="chooseRandomActivity()">
+
+            🎲 Pilihkan Untuk Saya
+
+        </button>
+
+
+        <div
+            class="random-result"
+            id="randomResult">
+
+            <h3 id="randomTitle">
+            </h3>
+
+            <p id="randomDescription">
+            </p>
+
+            <a
+                href="#"
+                id="randomLink"
+                class="random-link">
+
+                🚀 Mula Sekarang
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     STATISTIK
+========================= -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>
+            📊 Aktiviti Anda
+        </h2>
+
+        <p>
+            Lihat berapa kali anda mencuba cabaran
+        </p>
+
+    </div>
+
+
+    <div class="stats">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎯
+            </div>
+
+            <div
+                class="stat-number"
+                id="challengeCount">
+
+                0
+
+            </div>
+
+            <p>
+                Cabaran Dicuba
+            </p>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✅
+            </div>
+
+            <div
+                class="stat-number"
+                id="correctCount">
+
+                0
+
+            </div>
+
+            <p>
+                Jawapan Betul
+            </p>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🏆
+            </div>
+
+            <div
+                class="stat-number"
+                id="accuracy">
+
+                0%
+
+            </div>
+
+            <p>
+                Ketepatan
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     INFO
+========================= -->
+
+<section>
+
+    <div class="info-box">
+
+        <h2>
+            🌈 Dunia Kita
+        </h2>
+
+        <p>
+            Belajar tidak semestinya membosankan.
+            Bermain juga boleh membantu kita belajar.
+            Terokai Dunia Kita dan temui sesuatu yang
+            menarik setiap hari! ✨
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        © 2026 Dunia Kita 🌈
+        | Belajar • Bermain • Berkongsi
+    </p>
+
+</footer>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+
+/* =================================
+   CABARAN HARI INI
+================================= */
+
+const challenges = [
+
+    {
+        question:
+            "Planet manakah yang dikenali sebagai Planet Merah?",
+
+        options: [
+            "Bumi",
+            "Marikh",
+            "Musytari",
+            "Zuhrah"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        question:
+            "Berapakah hasil daripada 15 × 12?",
+
+        options: [
+            "160",
+            "170",
+            "180",
+            "190"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        question:
+            "Apakah organ terbesar pada tubuh manusia?",
+
+        options: [
+            "Jantung",
+            "Paru-paru",
+            "Kulit",
+            "Hati"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        question:
+            "Apakah gas yang paling banyak terdapat dalam atmosfera Bumi?",
+
+        options: [
+            "Oksigen",
+            "Karbon dioksida",
+            "Nitrogen",
+            "Hidrogen"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        question:
+            "Bilakah Malaysia dibentuk?",
+
+        options: [
+            "31 Ogos 1957",
+            "16 September 1963",
+            "1 Januari 1960",
+            "31 Disember 1965"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        question:
+            "Jika 3x + 6 = 21, berapakah nilai x?",
+
+        options: [
+            "3",
+            "5",
+            "7",
+            "9"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        question:
+            "Apakah simbol kimia bagi emas?",
+
+        options: [
+            "Ag",
+            "Fe",
+            "Au",
+            "Cu"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        question:
+            "Siapakah Perdana Menteri pertama Malaysia?",
+
+        options: [
+            "Tun Abdul Razak",
+            "Tunku Abdul Rahman",
+            "Tun Hussein Onn",
+            "Tun Dr. Mahathir"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        question:
+            "Apakah proses tumbuhan menghasilkan makanan menggunakan cahaya Matahari?",
+
+        options: [
+            "Penyejatan",
+            "Fotosintesis",
+            "Respirasi",
+            "Peleburan"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        question:
+            "Berapakah 25% daripada 240?",
+
+        options: [
+            "40",
+            "50",
+            "60",
+            "80"
+        ],
+
+        answer: 2
+    }
+
+];
+
+
+let currentChallenge = null;
+
+let challengeAttempts =
+    Number(localStorage.getItem("challengeAttempts")) || 0;
+
+let correctAnswers =
+    Number(localStorage.getItem("correctAnswers")) || 0;
+
+
+
+/* PAPAR STATISTIK */
+
+function updateStats() {
+
+    document.getElementById("challengeCount").textContent =
+        challengeAttempts;
+
+    document.getElementById("correctCount").textContent =
+        correctAnswers;
+
+
+    let accuracy = 0;
+
+    if (challengeAttempts > 0) {
+
+        accuracy =
+            Math.round(
+                (correctAnswers / challengeAttempts) * 100
+            );
+
+    }
+
+    document.getElementById("accuracy").textContent =
+        accuracy + "%";
+}
+
+
+
+/* SOALAN BARU */
+
+function newChallenge() {
+
+    const randomIndex =
+        Math.floor(Math.random() * challenges.length);
+
+    currentChallenge =
+        challenges[randomIndex];
+
+
+    document.getElementById("challengeQuestion").textContent =
+        currentChallenge.question;
+
+
+    const optionsContainer =
+        document.getElementById("challengeOptions");
+
+    optionsContainer.innerHTML = "";
+
+
+    document.getElementById("challengeResult").textContent =
+        "";
+
+
+    currentChallenge.options.forEach(
+        function(option, index) {
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "option-btn";
+
+            button.textContent =
+                option;
+
+            button.onclick =
+                function() {
+
+                    answerChallenge(
+                        index,
+                        button
+                    );
+
+                };
+
+
+            optionsContainer.appendChild(button);
+
+        }
+    );
+
+}
+
+
+
+/* JAWAB SOALAN */
+
+function answerChallenge(selected, selectedButton) {
+
+    const buttons =
+        document.querySelectorAll(".option-btn");
+
+
+    buttons.forEach(
+        function(button) {
+
+            button.disabled = true;
+
+        }
+    );
+
+
+    challengeAttempts++;
+
+
+    localStorage.setItem(
+        "challengeAttempts",
+        challengeAttempts
+    );
+
+
+    const result =
+        document.getElementById("challengeResult");
+
+
+    if (selected === currentChallenge.answer) {
+
+        selectedButton.classList.add("correct");
+
+        correctAnswers++;
+
+        localStorage.setItem(
+            "correctAnswers",
+            correctAnswers
+        );
+
+
+        result.textContent =
+            "🎉 Betul! Hebat, teruskan usaha anda!";
+
+
+    } else {
+
+        selectedButton.classList.add("wrong");
+
+
+        buttons[
+            currentChallenge.answer
+        ].classList.add("correct");
+
+
+        result.textContent =
+            "💜 Belum tepat! Jangan risau, cuba lagi!";
+
+    }
+
+
+    updateStats();
+
+}
+
+
+
+/* =================================
+   AKTIVITI RAWAK
+================================= */
+
+const randomActivities = [
+
+    {
+        icon: "📚",
+
+        title: "Belajar",
+
+        description:
+            "Jom tambah ilmu! Temui fakta menarik dalam Matematik, Sains, Dunia, Bahasa, Teknologi dan Pengetahuan Am.",
+
+        link: "belajar.html"
+    },
+
+
+    {
+        icon: "🎮",
+
+        title: "Permainan",
+
+        description:
+            "Nak berseronok? Cuba 5 permainan yang ada dalam Dunia Kita!",
+
+        link: "permainan.html"
+    },
+
+
+    {
+        icon: "🧠",
+
+        title: "Kuiz",
+
+        description:
+            "Uji pengetahuan anda dengan 30 soalan daripada pelbagai kategori.",
+
+        link: "kuiz.html"
+    },
+
+
+    {
+        icon: "💡",
+
+        title: "Idea & Tips",
+
+        description:
+            "Baca tip kehidupan yang boleh membantu anda menjadi lebih kuat dan positif.",
+
+        link: "tips.html"
+    },
+
+
+    {
+        icon: "🍳",
+
+        title: "Resipi",
+
+        description:
+            "Jom masuk dapur! Cuba resipi mudah seperti nasi goreng, pancake dan kek coklat.",
+
+        link: "resipi.html"
+    },
+
+
+    {
+        icon: "📝",
+
+        title: "Catatan",
+
+        description:
+            "Ada idea atau sesuatu yang ingin ditulis? Simpan catatan anda di sini.",
+
+        link: "catatan.html"
+    }
+
+];
+
+
+
+function chooseRandomActivity() {
+
+    const randomIndex =
+        Math.floor(
+            Math.random() *
+            randomActivities.length
+        );
+
+
+    const activity =
+        randomActivities[randomIndex];
+
+
+    document.getElementById("randomTitle").textContent =
+        activity.icon + " " + activity.title;
+
+
+    document.getElementById("randomDescription").textContent =
+        activity.description;
+
+
+    document.getElementById("randomLink").href =
+        activity.link;
+
+
+    document.getElementById("randomResult").style.display =
+        "block";
+
+
+    document.getElementById("randomResult").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+}
+
+
+
+/* =================================
+   MULA PAGE
+================================= */
+
+newChallenge();
+
+updateStats();
+
+
+</script>
+
+
+</body>
+</html>
+```

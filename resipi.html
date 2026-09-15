@@ -1,0 +1,882 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resipi - Dunia Kita</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f3ff;
+            color: #333;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 55px 20px;
+            background: linear-gradient(135deg, #e0c3fc, #f5e6ff);
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            color: #5a189a;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #5a189a;
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        /* CATEGORY */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .category-btn {
+            border: none;
+            background: white;
+            color: #6a1b9a;
+            padding: 10px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: #7b2cbf;
+            color: white;
+        }
+
+        /* RECIPE GRID */
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .recipe-card {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .recipe-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .recipe-card h3 {
+            color: #6a1b9a;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .recipe-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .recipe-info {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .recipe-btn {
+            border: none;
+            background: #7b2cbf;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .recipe-btn:hover {
+            background: #5a189a;
+        }
+
+        /* RECIPE DETAIL */
+        .recipe-detail {
+            display: none;
+            margin-top: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        .recipe-detail.show {
+            display: block;
+        }
+
+        .recipe-detail h2 {
+            color: #5a189a;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .detail-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .detail-box {
+            background: #f8f2ff;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .detail-box h3 {
+            color: #7b2cbf;
+            margin-bottom: 12px;
+        }
+
+        .detail-box ul,
+        .detail-box ol {
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+
+        /* TIP */
+        .tip-box {
+            margin-top: 40px;
+            background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .tip-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .tip-box p {
+            line-height: 1.6;
+        }
+
+        /* HOME BUTTON */
+        .home-button {
+            display: block;
+            width: fit-content;
+            margin: 40px auto 10px;
+            text-decoration: none;
+            background: #7b2cbf;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .home-button:hover {
+            background: #5a189a;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 40px;
+            background: #4a148c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+
+            header {
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .detail-content {
+                grid-template-columns: 1fr;
+            }
+
+            .recipe-info {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <div class="logo">
+            🌈 Dunia Kita
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="belajar.html">Belajar</a>
+            <a href="permainan.html">Permainan</a>
+            <a href="kuiz.html">Kuiz</a>
+            <a href="tips.html">Tips</a>
+            <a href="resipi.html">Resipi</a>
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <h1>🍳 Jom Masak!</h1>
+
+        <p>
+            Cari resipi mudah dan sedap untuk dicuba di rumah.
+        </p>
+
+    </section>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+        <h2 class="section-title">
+            🍽️ Koleksi Resipi
+        </h2>
+
+
+        <!-- CATEGORY -->
+        <div class="categories">
+
+            <button class="category-btn active"
+                    onclick="filterRecipe('semua', this)">
+                Semua
+            </button>
+
+            <button class="category-btn"
+                    onclick="filterRecipe('sarapan', this)">
+                🌅 Sarapan
+            </button>
+
+            <button class="category-btn"
+                    onclick="filterRecipe('makanan', this)">
+                🍛 Makanan
+            </button>
+
+            <button class="category-btn"
+                    onclick="filterRecipe('minuman', this)">
+                🥤 Minuman
+            </button>
+
+            <button class="category-btn"
+                    onclick="filterRecipe('pencuci', this)">
+                🍰 Pencuci Mulut
+            </button>
+
+        </div>
+
+
+        <!-- RECIPE CARDS -->
+        <div class="recipe-grid">
+
+
+            <!-- NASI GORENG -->
+            <div class="recipe-card" data-category="makanan">
+
+                <div class="recipe-icon">
+                    🍳
+                </div>
+
+                <h3>Nasi Goreng Kampung</h3>
+
+                <p>
+                    Resipi nasi goreng mudah dan sesuai untuk sarapan
+                    atau makan malam.
+                </p>
+
+                <div class="recipe-info">
+                    <span>⏱️ 15 min</span>
+                    <span>👨‍🍳 Mudah</span>
+                </div>
+
+                <button class="recipe-btn"
+                        onclick="showRecipe('nasi')">
+                    Lihat Resipi
+                </button>
+
+            </div>
+
+
+            <!-- MEE GORENG -->
+            <div class="recipe-card" data-category="makanan">
+
+                <div class="recipe-icon">
+                    🍜
+                </div>
+
+                <h3>Mee Goreng Mudah</h3>
+
+                <p>
+                    Mee goreng ringkas yang boleh disediakan
+                    dengan bahan yang mudah didapati.
+                </p>
+
+                <div class="recipe-info">
+                    <span>⏱️ 20 min</span>
+                    <span>👨‍🍳 Mudah</span>
+                </div>
+
+                <button class="recipe-btn"
+                        onclick="showRecipe('mee')">
+                    Lihat Resipi
+                </button>
+
+            </div>
+
+
+            <!-- ROTI TELUR -->
+            <div class="recipe-card" data-category="sarapan">
+
+                <div class="recipe-icon">
+                    🍞
+                </div>
+
+                <h3>Roti Telur</h3>
+
+                <p>
+                    Sarapan ringkas, cepat dan mengenyangkan
+                    untuk seisi keluarga.
+                </p>
+
+                <div class="recipe-info">
+                    <span>⏱️ 10 min</span>
+                    <span>👨‍🍳 Sangat Mudah</span>
+                </div>
+
+                <button class="recipe-btn"
+                        onclick="showRecipe('roti')">
+                    Lihat Resipi
+                </button>
+
+            </div>
+
+
+            <!-- MILO AIS -->
+            <div class="recipe-card" data-category="minuman">
+
+                <div class="recipe-icon">
+                    🥤
+                </div>
+
+                <h3>Milo Ais</h3>
+
+                <p>
+                    Minuman sejuk dan menyegarkan yang mudah
+                    dibuat di rumah.
+                </p>
+
+                <div class="recipe-info">
+                    <span>⏱️ 5 min</span>
+                    <span>👨‍🍳 Sangat Mudah</span>
+                </div>
+
+                <button class="recipe-btn"
+                        onclick="showRecipe('milo')">
+                    Lihat Resipi
+                </button>
+
+            </div>
+
+
+            <!-- PANCAKE -->
+            <div class="recipe-card" data-category="sarapan">
+
+                <div class="recipe-icon">
+                    🥞
+                </div>
+
+                <h3>Pancake Mudah</h3>
+
+                <p>
+                    Pancake lembut dan sedap untuk sarapan
+                    bersama keluarga.
+                </p>
+
+                <div class="recipe-info">
+                    <span>⏱️ 20 min</span>
+                    <span>👨‍🍳 Mudah</span>
+                </div>
+
+                <button class="recipe-btn"
+                        onclick="showRecipe('pancake')">
+                    Lihat Resipi
+                </button>
+
+            </div>
+
+
+            <!-- KEK COKLAT -->
+            <div class="recipe-card" data-category="pencuci">
+
+                <div class="recipe-icon">
+                    🍰
+                </div>
+
+                <h3>Kek Coklat Mudah</h3>
+
+                <p>
+                    Kek coklat ringkas dengan rasa coklat yang
+                    sedap dan lembut.
+                </p>
+
+                <div class="recipe-info">
+                    <span>⏱️ 45 min</span>
+                    <span>👨‍🍳 Sederhana</span>
+                </div>
+
+                <button class="recipe-btn"
+                        onclick="showRecipe('kek')">
+                    Lihat Resipi
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- RECIPE DETAIL -->
+        <div id="recipeDetail" class="recipe-detail">
+
+            <h2 id="recipeTitle">
+                Resipi
+            </h2>
+
+            <div class="detail-content">
+
+                <div class="detail-box">
+
+                    <h3>🛒 Bahan-bahan</h3>
+
+                    <ul id="ingredients"></ul>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <h3>👨‍🍳 Cara Penyediaan</h3>
+
+                    <ol id="steps"></ol>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TIP -->
+        <div class="tip-box">
+
+            <h2>💡 Tip Memasak</h2>
+
+            <p>
+                Sediakan semua bahan terlebih dahulu sebelum mula
+                memasak. Ini akan menjadikan proses memasak lebih
+                mudah, cepat dan teratur. 😊
+            </p>
+
+        </div>
+
+
+        <!-- HOME -->
+        <a href="index.html" class="home-button">
+            🏠 Kembali ke Home
+        </a>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        © 2026 Dunia Kita 🌈
+        <br>
+        Belajar • Bermain • Berkongsi • Berkarya
+
+    </footer>
+
+
+    <script>
+
+        /* =========================
+           DATA RESIPI
+        ========================= */
+
+        const recipes = {
+
+            nasi: {
+
+                title: "🍳 Nasi Goreng Kampung",
+
+                ingredients: [
+                    "2 cawan nasi putih",
+                    "2 biji telur",
+                    "2 ulas bawang putih",
+                    "3 ulas bawang merah",
+                    "Sedikit ikan bilis",
+                    "1 sudu besar kicap",
+                    "Sedikit garam",
+                    "Sedikit minyak"
+                ],
+
+                steps: [
+                    "Panaskan minyak dalam kuali.",
+                    "Tumis bawang putih dan bawang merah sehingga wangi.",
+                    "Masukkan ikan bilis dan goreng seketika.",
+                    "Masukkan telur dan kacau sehingga masak.",
+                    "Masukkan nasi dan gaul rata.",
+                    "Masukkan kicap dan sedikit garam.",
+                    "Goreng sehingga nasi sebati dan siap dihidangkan."
+                ]
+
+            },
+
+
+            mee: {
+
+                title: "🍜 Mee Goreng Mudah",
+
+                ingredients: [
+                    "1 bungkus mee kuning",
+                    "2 biji telur",
+                    "2 ulas bawang putih",
+                    "2 sudu besar kicap",
+                    "1 sudu besar sos cili",
+                    "Sayur pilihan",
+                    "Sedikit minyak",
+                    "Sedikit garam"
+                ],
+
+                steps: [
+                    "Panaskan minyak dalam kuali.",
+                    "Tumis bawang putih sehingga wangi.",
+                    "Masukkan telur dan kacau.",
+                    "Masukkan mee kuning.",
+                    "Masukkan kicap dan sos cili.",
+                    "Masukkan sayur pilihan.",
+                    "Gaul sehingga semua bahan sebati dan masak."
+                ]
+
+            },
+
+
+            roti: {
+
+                title: "🍞 Roti Telur",
+
+                ingredients: [
+                    "2 keping roti",
+                    "2 biji telur",
+                    "Sedikit garam",
+                    "Sedikit lada sulah",
+                    "1 sudu besar minyak atau marjerin"
+                ],
+
+                steps: [
+                    "Pecahkan telur ke dalam mangkuk.",
+                    "Masukkan garam dan lada sulah.",
+                    "Pukul telur sehingga sebati.",
+                    "Celupkan roti ke dalam telur.",
+                    "Panaskan kuali dan letakkan sedikit minyak.",
+                    "Goreng roti sehingga kedua-dua bahagian keemasan.",
+                    "Angkat dan hidangkan."
+                ]
+
+            },
+
+
+            milo: {
+
+                title: "🥤 Milo Ais",
+
+                ingredients: [
+                    "3 sudu besar serbuk Milo",
+                    "Sedikit air panas",
+                    "Air sejuk secukupnya",
+                    "Ais secukupnya",
+                    "Susu pekat mengikut citarasa"
+                ],
+
+                steps: [
+                    "Masukkan serbuk Milo ke dalam gelas.",
+                    "Tambahkan sedikit air panas.",
+                    "Kacau sehingga Milo larut.",
+                    "Masukkan susu pekat jika suka.",
+                    "Tambahkan air sejuk.",
+                    "Masukkan ais.",
+                    "Kacau dan nikmati."
+                ]
+
+            },
+
+
+            pancake: {
+
+                title: "🥞 Pancake Mudah",
+
+                ingredients: [
+                    "1 cawan tepung gandum",
+                    "1 biji telur",
+                    "1 cawan susu",
+                    "2 sudu besar gula",
+                    "1 sudu kecil baking powder",
+                    "1 sudu besar mentega cair"
+                ],
+
+                steps: [
+                    "Masukkan tepung, gula dan baking powder ke dalam mangkuk.",
+                    "Masukkan telur dan susu.",
+                    "Kacau sehingga adunan sebati.",
+                    "Masukkan mentega cair.",
+                    "Panaskan kuali dengan api sederhana.",
+                    "Tuang sedikit adunan ke dalam kuali.",
+                    "Masak sehingga muncul gelembung kecil.",
+                    "Terbalikkan pancake dan masak sehingga keemasan."
+                ]
+
+            },
+
+
+            kek: {
+
+                title: "🍰 Kek Coklat Mudah",
+
+                ingredients: [
+                    "1 cawan tepung gandum",
+                    "1/2 cawan serbuk koko",
+                    "1 cawan gula",
+                    "2 biji telur",
+                    "1/2 cawan minyak",
+                    "1 cawan susu",
+                    "1 sudu kecil baking powder",
+                    "1 sudu kecil esen vanila"
+                ],
+
+                steps: [
+                    "Panaskan oven pada suhu 170°C.",
+                    "Campurkan tepung, serbuk koko dan baking powder.",
+                    "Dalam mangkuk lain, pukul telur dan gula.",
+                    "Masukkan minyak, susu dan esen vanila.",
+                    "Masukkan bahan kering sedikit demi sedikit.",
+                    "Gaul sehingga adunan sebati.",
+                    "Tuangkan adunan ke dalam loyang.",
+                    "Bakar selama kira-kira 35 hingga 45 minit.",
+                    "Biarkan sejuk sebelum dipotong."
+                ]
+
+            }
+
+        };
+
+
+        /* =========================
+           PAPAR RESIPI
+        ========================= */
+
+        function showRecipe(recipeName) {
+
+            const recipe = recipes[recipeName];
+
+            document.getElementById("recipeTitle").textContent =
+                recipe.title;
+
+
+            /* BAHAN */
+
+            const ingredients =
+                document.getElementById("ingredients");
+
+            ingredients.innerHTML = "";
+
+            recipe.ingredients.forEach(function(item) {
+
+                const li = document.createElement("li");
+
+                li.textContent = item;
+
+                ingredients.appendChild(li);
+
+            });
+
+
+            /* CARA */
+
+            const steps =
+                document.getElementById("steps");
+
+            steps.innerHTML = "";
+
+            recipe.steps.forEach(function(item) {
+
+                const li = document.createElement("li");
+
+                li.textContent = item;
+
+                steps.appendChild(li);
+
+            });
+
+
+            /* PAPARKAN */
+
+            const detail =
+                document.getElementById("recipeDetail");
+
+            detail.classList.add("show");
+
+
+            /* SCROLL */
+
+            detail.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+
+        /* =========================
+           FILTER KATEGORI
+        ========================= */
+
+        function filterRecipe(category, button) {
+
+            const cards =
+                document.querySelectorAll(".recipe-card");
+
+            const buttons =
+                document.querySelectorAll(".category-btn");
+
+
+            /* Tukar button aktif */
+
+            buttons.forEach(function(btn) {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+
+            /* Filter */
+
+            cards.forEach(function(card) {
+
+                const cardCategory =
+                    card.getAttribute("data-category");
+
+
+                if (
+                    category === "semua" ||
+                    cardCategory === category
+                ) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>
+```

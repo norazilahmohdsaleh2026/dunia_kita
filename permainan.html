@@ -1,0 +1,1556 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Permainan - Dunia Kita</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f0ff, #ffffff);
+            color: #333;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: linear-gradient(135deg, #6a1b9a, #8e44ad);
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: rgba(255,255,255,0.2);
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px 35px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: #6a1b9a;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #666;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           GAME CONTAINER
+        ========================= */
+
+        .games {
+            max-width: 1100px;
+            margin: auto;
+            padding: 10px 20px 60px;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(106,27,154,0.10);
+            border: 1px solid #eee;
+        }
+
+        .game-title {
+            text-align: center;
+            color: #6a1b9a;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .game-description {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .game-area {
+            background: #faf7ff;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            min-height: 180px;
+        }
+
+
+        /* BUTTON */
+
+        button {
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 25px;
+            padding: 12px 22px;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        .main-btn {
+            background: linear-gradient(135deg, #6a1b9a, #9b59b6);
+            color: white;
+        }
+
+        .score {
+            font-size: 18px;
+            font-weight: bold;
+            color: #6a1b9a;
+            margin-bottom: 15px;
+        }
+
+
+        /* =========================
+           GAME 1 - REFLEX
+        ========================= */
+
+        #reflexButton {
+            width: 220px;
+            height: 100px;
+            border-radius: 20px;
+            background: #777;
+            color: white;
+            font-size: 20px;
+            margin: 15px auto;
+        }
+
+        #reflexButton.ready {
+            background: #2ecc71;
+        }
+
+        #reflexButton.wait {
+            background: #e74c3c;
+        }
+
+        .reaction-result {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           GAME 2 - MEMORY
+        ========================= */
+
+        .memory-board {
+            display: grid;
+            grid-template-columns: repeat(4, 70px);
+            gap: 10px;
+            justify-content: center;
+            margin: 20px auto;
+        }
+
+        .memory-card {
+            width: 70px;
+            height: 70px;
+            background: #6a1b9a;
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .memory-card.show {
+            background: white;
+            color: #333;
+            border: 2px solid #6a1b9a;
+        }
+
+
+        /* =========================
+           GAME 3 - WORD SCRAMBLE
+        ========================= */
+
+        .scramble-word {
+            font-size: 38px;
+            font-weight: bold;
+            letter-spacing: 8px;
+            color: #6a1b9a;
+            margin: 20px;
+        }
+
+        .word-input {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            width: 230px;
+            outline: none;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .word-input:focus {
+            border-color: #8e44ad;
+        }
+
+        .word-message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           GAME 4 - TARGET
+        ========================= */
+
+        .target-area {
+            position: relative;
+            height: 350px;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 2px dashed #d8c4ec;
+            margin-top: 15px;
+        }
+
+        #target {
+            position: absolute;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: #e74c3c;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        #target::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 17px;
+            left: 17px;
+        }
+
+        .target-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #6a1b9a;
+        }
+
+
+        /* =========================
+           GAME 5 - RPS
+        ========================= */
+
+        .rps-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .rps-btn {
+            width: 120px;
+            height: 90px;
+            background: white;
+            border: 2px solid #eadcff;
+            font-size: 17px;
+            color: #6a1b9a;
+        }
+
+        .rps-btn span {
+            display: block;
+            font-size: 35px;
+            margin-bottom: 5px;
+        }
+
+        .rps-result {
+            font-size: 19px;
+            font-weight: bold;
+            line-height: 1.8;
+        }
+
+        .rps-score {
+            margin-top: 15px;
+            font-size: 17px;
+            color: #6a1b9a;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #4a148c;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            header {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .game-card {
+                padding: 20px 15px;
+            }
+
+            .game-title {
+                font-size: 24px;
+            }
+
+            .memory-board {
+                grid-template-columns: repeat(4, 60px);
+            }
+
+            .memory-card {
+                width: 60px;
+                height: 60px;
+            }
+
+            .target-area {
+                height: 280px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        🌈 Dunia Kita
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="belajar.html">
+            Belajar
+        </a>
+
+        <a href="permainan.html" class="active">
+            Permainan
+        </a>
+
+        <a href="kuiz.html">
+            Kuiz
+        </a>
+
+        <a href="tips.html">
+            Tips
+        </a>
+
+        <a href="resipi.html">
+            Resipi
+        </a>
+
+        <a href="catatan.html">
+            Catatan
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <h1>
+        🎮 Jom Bermain!
+    </h1>
+
+    <p>
+        Rehatkan minda, cabar diri sendiri dan cuba pecahkan
+        skor terbaik anda! 🔥
+    </p>
+
+</section>
+
+
+<div class="games">
+
+
+<!-- =====================================================
+     GAME 1 - REFLEX RUSH
+===================================================== -->
+
+<div class="game-card">
+
+    <h2 class="game-title">
+        ⚡ Reflex Rush
+    </h2>
+
+    <p class="game-description">
+        Uji seberapa pantas reaksi anda!
+        Tunggu warna hijau dan tekan secepat mungkin.
+    </p>
+
+    <div class="game-area">
+
+        <div class="score">
+            Masa reaksi:
+            <span id="reactionTime">-</span>
+        </div>
+
+        <button
+            id="reflexButton"
+            onclick="reflexClick()">
+
+            ▶ Mula Game
+
+        </button>
+
+        <div
+            class="reaction-result"
+            id="reactionMessage">
+
+            Tekan mula dan tunggu...
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     GAME 2 - MEMORY CHALLENGE
+===================================================== -->
+
+<div class="game-card">
+
+    <h2 class="game-title">
+        🧠 Memory Challenge
+    </h2>
+
+    <p class="game-description">
+        Ingat kedudukan emoji dan cari semua pasangan.
+        Berapa pantas anda boleh habiskan?
+    </p>
+
+    <div class="game-area">
+
+        <div class="score">
+            Percubaan:
+            <span id="memoryMoves">0</span>
+        </div>
+
+        <div
+            class="memory-board"
+            id="memoryBoard">
+        </div>
+
+        <button
+            class="main-btn"
+            onclick="startMemoryGame()">
+
+            🔄 Mula Semula
+
+        </button>
+
+        <div
+            id="memoryMessage"
+            style="margin-top:15px;font-weight:bold;">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     GAME 3 - WORD SCRAMBLE
+===================================================== -->
+
+<div class="game-card">
+
+    <h2 class="game-title">
+        🔤 Word Scramble
+    </h2>
+
+    <p class="game-description">
+        Huruf telah dicampur! Susun semula dan teka perkataan yang betul.
+    </p>
+
+    <div class="game-area">
+
+        <div class="score">
+            Skor:
+            <span id="wordScore">0</span>
+            &nbsp; | &nbsp;
+            Soalan:
+            <span id="wordQuestion">1</span>/10
+        </div>
+
+        <div
+            class="scramble-word"
+            id="scrambleWord">
+        </div>
+
+        <input
+            type="text"
+            id="wordInput"
+            class="word-input"
+            placeholder="Taip jawapan..."
+            autocomplete="off">
+
+        <br><br>
+
+        <button
+            class="main-btn"
+            onclick="checkWord()">
+
+            ✅ Jawab
+
+        </button>
+
+        <button
+            class="main-btn"
+            onclick="newWord()">
+
+            🔄 Tukar
+
+        </button>
+
+        <div
+            class="word-message"
+            id="wordMessage">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     GAME 4 - TARGET HUNTER
+===================================================== -->
+
+<div class="game-card">
+
+    <h2 class="game-title">
+        🎯 Target Hunter
+    </h2>
+
+    <p class="game-description">
+        Klik sasaran sebanyak mungkin dalam masa 15 saat!
+        Sasaran akan bergerak setiap kali anda berjaya klik.
+    </p>
+
+    <div class="game-area">
+
+        <div class="target-info">
+
+            <div>
+                🎯 Skor:
+                <span id="targetScore">0</span>
+            </div>
+
+            <div>
+                ⏱️ Masa:
+                <span id="targetTime">15</span>
+            </div>
+
+        </div>
+
+        <button
+            class="main-btn"
+            onclick="startTargetGame()"
+            style="margin-top:15px;">
+
+            🚀 Mula Game
+
+        </button>
+
+        <div
+            class="target-area"
+            id="targetArea">
+
+            <div
+                id="target"
+                onclick="hitTarget()">
+            </div>
+
+        </div>
+
+        <div
+            id="targetMessage"
+            style="margin-top:15px;font-weight:bold;">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     GAME 5 - BATU GUNTING KERTAS
+===================================================== -->
+
+<div class="game-card">
+
+    <h2 class="game-title">
+        ✊ Batu, Gunting, Kertas
+    </h2>
+
+    <p class="game-description">
+        Lawan komputer! Cuba dapatkan skor tertinggi.
+    </p>
+
+    <div class="game-area">
+
+        <div class="score">
+            Anda:
+            <span id="playerScore">0</span>
+
+            &nbsp; - &nbsp;
+
+            Komputer:
+            <span id="computerScore">0</span>
+        </div>
+
+        <div class="rps-buttons">
+
+            <button
+                class="rps-btn"
+                onclick="playRPS('batu')">
+
+                <span>✊</span>
+                Batu
+
+            </button>
+
+
+            <button
+                class="rps-btn"
+                onclick="playRPS('gunting')">
+
+                <span>✌️</span>
+                Gunting
+
+            </button>
+
+
+            <button
+                class="rps-btn"
+                onclick="playRPS('kertas')">
+
+                <span>✋</span>
+                Kertas
+
+            </button>
+
+        </div>
+
+        <div
+            class="rps-result"
+            id="rpsResult">
+
+            Pilih satu! 👇
+
+        </div>
+
+        <br>
+
+        <button
+            class="main-btn"
+            onclick="resetRPS()">
+
+            🔄 Reset Skor
+
+        </button>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>🌈 Dunia Kita</p>
+
+    <p>
+        Belajar • Bermain • Berkongsi • Berseronok
+    </p>
+
+    <p>
+        © 2026 Dunia Kita
+    </p>
+
+</footer>
+
+
+<script>
+
+
+/* =====================================================
+   GAME 1
+   REFLEX RUSH
+===================================================== */
+
+let reflexStartTime = 0;
+let reflexTimer;
+let reflexPlaying = false;
+
+
+function startReflex() {
+
+    const button = document.getElementById("reflexButton");
+
+    const message = document.getElementById("reactionMessage");
+
+    const result = document.getElementById("reactionTime");
+
+
+    reflexPlaying = false;
+
+    button.className = "wait";
+
+    button.innerText = "⏳ Tunggu...";
+
+    message.innerText =
+        "Jangan tekan dulu! Tunggu hijau...";
+
+    result.innerText = "-";
+
+
+    const delay =
+        Math.floor(Math.random() * 3000) + 2000;
+
+
+    reflexTimer = setTimeout(function() {
+
+        reflexPlaying = true;
+
+        reflexStartTime = Date.now();
+
+        button.className = "ready";
+
+        button.innerText = "🟢 TEKAN SEKARANG!";
+
+        message.innerText =
+            "CEPAT!!!";
+
+    }, delay);
+
+}
+
+
+function reflexClick() {
+
+    const button = document.getElementById("reflexButton");
+
+    const message = document.getElementById("reactionMessage");
+
+    const result = document.getElementById("reactionTime");
+
+
+    if (!reflexPlaying && button.classList.contains("wait")) {
+
+        clearTimeout(reflexTimer);
+
+        button.className = "wait";
+
+        button.innerText = "❌ TERLALU AWAL!";
+
+        message.innerText =
+            "Haha! Jangan terlalu gopoh 😆 Cuba lagi.";
+
+        reflexPlaying = false;
+
+        setTimeout(startReflex, 1500);
+
+        return;
+    }
+
+
+    if (reflexPlaying) {
+
+        const time =
+            Date.now() - reflexStartTime;
+
+        result.innerText =
+            time + " ms";
+
+
+        if (time < 250) {
+
+            message.innerText =
+                "🔥 GILA LAJU! Refleks anda memang hebat!";
+
+        } else if (time < 400) {
+
+            message.innerText =
+                "⚡ Mantap! Refleks anda sangat baik!";
+
+        } else if (time < 600) {
+
+            message.innerText =
+                "👍 Bagus! Cuba pecahkan rekod anda.";
+
+        } else {
+
+            message.innerText =
+                "😆 Boleh lagi laju! Cuba sekali lagi.";
+
+        }
+
+
+        button.className = "";
+
+        button.innerText =
+            "🔄 Cuba Lagi";
+
+        reflexPlaying = false;
+
+    } else {
+
+        startReflex();
+
+    }
+
+}
+
+
+/* =====================================================
+   GAME 2
+   MEMORY CHALLENGE
+===================================================== */
+
+const memoryEmojis = [
+    "🐱",
+    "🐶",
+    "🦊",
+    "🐼",
+    "🐸",
+    "🐵",
+    "🦁",
+    "🐯"
+];
+
+let memoryCards = [];
+let firstCard = null;
+let secondCard = null;
+let memoryLock = false;
+let memoryMoves = 0;
+let memoryMatches = 0;
+
+
+function startMemoryGame() {
+
+    const board =
+        document.getElementById("memoryBoard");
+
+    board.innerHTML = "";
+
+    memoryCards = [];
+
+    firstCard = null;
+
+    secondCard = null;
+
+    memoryLock = false;
+
+    memoryMoves = 0;
+
+    memoryMatches = 0;
+
+    document.getElementById("memoryMoves").innerText = 0;
+
+    document.getElementById("memoryMessage").innerText = "";
+
+
+    let cards = [
+        ...memoryEmojis,
+        ...memoryEmojis
+    ];
+
+
+    cards.sort(() => Math.random() - 0.5);
+
+
+    cards.forEach(function(emoji, index) {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "memory-card";
+
+        card.dataset.emoji = emoji;
+
+        card.dataset.index = index;
+
+        card.innerText = "?";
+
+        card.onclick = function() {
+
+            flipMemoryCard(card);
+
+        };
+
+        board.appendChild(card);
+
+        memoryCards.push(card);
+
+    });
+
+}
+
+
+function flipMemoryCard(card) {
+
+    if (memoryLock) return;
+
+    if (card === firstCard) return;
+
+    if (card.classList.contains("show")) return;
+
+
+    card.classList.add("show");
+
+    card.innerText =
+        card.dataset.emoji;
+
+
+    if (!firstCard) {
+
+        firstCard = card;
+
+        return;
+
+    }
+
+
+    secondCard = card;
+
+    memoryMoves++;
+
+    document.getElementById("memoryMoves").innerText =
+        memoryMoves;
+
+
+    if (
+        firstCard.dataset.emoji ===
+        secondCard.dataset.emoji
+    ) {
+
+        memoryMatches++;
+
+        firstCard = null;
+
+        secondCard = null;
+
+
+        if (memoryMatches === memoryEmojis.length) {
+
+            document.getElementById("memoryMessage").innerText =
+                "🏆 Tahniah! Semua pasangan berjaya ditemui dalam " +
+                memoryMoves +
+                " percubaan!";
+
+        }
+
+    } else {
+
+        memoryLock = true;
+
+        setTimeout(function() {
+
+            firstCard.classList.remove("show");
+
+            secondCard.classList.remove("show");
+
+            firstCard.innerText = "?";
+
+            secondCard.innerText = "?";
+
+            firstCard = null;
+
+            secondCard = null;
+
+            memoryLock = false;
+
+        }, 700);
+
+    }
+
+}
+
+
+/* Mula game memory secara automatik */
+
+startMemoryGame();
+
+
+/* =====================================================
+   GAME 3
+   WORD SCRAMBLE
+===================================================== */
+
+const words = [
+    "SEKOLAH",
+    "KOMPUTER",
+    "MATAHARI",
+    "KELUARGA",
+    "PERSAHABATAN",
+    "MALAYSIA",
+    "PEMBELAJARAN",
+    "TEKNOLOGI",
+    "KREATIF",
+    "SEMANGAT"
+];
+
+
+let currentWord = "";
+
+let wordScore = 0;
+
+let wordNumber = 1;
+
+
+function shuffleWord(word) {
+
+    let letters =
+        word.split("");
+
+    letters.sort(() =>
+        Math.random() - 0.5
+    );
+
+    return letters.join("");
+}
+
+
+function newWord() {
+
+    if (wordNumber > 10) {
+
+        document.getElementById("scrambleWord").innerText =
+            "🎉 TAMAT!";
+
+        return;
+
+    }
+
+
+    currentWord =
+        words[wordNumber - 1];
+
+
+    let scrambled =
+        shuffleWord(currentWord);
+
+
+    /* Pastikan huruf tidak sama seperti jawapan */
+
+    while (
+        scrambled === currentWord &&
+        currentWord.length > 1
+    ) {
+
+        scrambled =
+            shuffleWord(currentWord);
+
+    }
+
+
+    document.getElementById("scrambleWord").innerText =
+        scrambled;
+
+
+    document.getElementById("wordQuestion").innerText =
+        wordNumber;
+
+
+    document.getElementById("wordInput").value = "";
+
+    document.getElementById("wordMessage").innerText = "";
+
+}
+
+
+function checkWord() {
+
+    const input =
+        document.getElementById("wordInput").value
+        .trim()
+        .toUpperCase();
+
+
+    const message =
+        document.getElementById("wordMessage");
+
+
+    if (!input) {
+
+        message.innerText =
+            "✏️ Masukkan jawapan dahulu.";
+
+        return;
+
+    }
+
+
+    if (input === currentWord) {
+
+        wordScore += 10;
+
+        document.getElementById("wordScore").innerText =
+            wordScore;
+
+        message.innerText =
+            "🎉 Betul! Hebat! +10 mata";
+
+        wordNumber++;
+
+
+        setTimeout(function() {
+
+            newWord();
+
+        }, 900);
+
+    } else {
+
+        message.innerText =
+            "❌ Belum betul. Cuba lagi!";
+
+    }
+
+
+    if (wordNumber > 10) {
+
+        setTimeout(function() {
+
+            message.innerText =
+                "🏆 Game tamat! Skor anda: " +
+                wordScore;
+
+        }, 1000);
+
+    }
+
+}
+
+
+document.getElementById("wordInput")
+.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+
+        checkWord();
+
+    }
+
+});
+
+
+newWord();
+
+
+/* =====================================================
+   GAME 4
+   TARGET HUNTER
+===================================================== */
+
+let targetScore = 0;
+
+let targetTime = 15;
+
+let targetInterval;
+
+let targetGameRunning = false;
+
+
+function startTargetGame() {
+
+    clearInterval(targetInterval);
+
+
+    targetScore = 0;
+
+    targetTime = 15;
+
+    targetGameRunning = true;
+
+
+    document.getElementById("targetScore").innerText =
+        0;
+
+    document.getElementById("targetTime").innerText =
+        15;
+
+    document.getElementById("targetMessage").innerText =
+        "🔥 CEPAT! Klik sasaran!";
+
+
+    const target =
+        document.getElementById("target");
+
+
+    target.style.display = "block";
+
+    moveTarget();
+
+
+    targetInterval =
+        setInterval(function() {
+
+            targetTime--;
+
+            document.getElementById("targetTime").innerText =
+                targetTime;
+
+
+            if (targetTime <= 0) {
+
+                endTargetGame();
+
+            }
+
+        }, 1000);
+
+}
+
+
+function moveTarget() {
+
+    const area =
+        document.getElementById("targetArea");
+
+    const target =
+        document.getElementById("target");
+
+
+    const maxX =
+        area.clientWidth -
+        target.offsetWidth;
+
+    const maxY =
+        area.clientHeight -
+        target.offsetHeight;
+
+
+    const x =
+        Math.random() * maxX;
+
+    const y =
+        Math.random() * maxY;
+
+
+    target.style.left =
+        x + "px";
+
+    target.style.top =
+        y + "px";
+
+}
+
+
+function hitTarget() {
+
+    if (!targetGameRunning) return;
+
+
+    targetScore++;
+
+
+    document.getElementById("targetScore").innerText =
+        targetScore;
+
+
+    moveTarget();
+
+}
+
+
+function endTargetGame() {
+
+    clearInterval(targetInterval);
+
+    targetGameRunning = false;
+
+
+    document.getElementById("target")
+        .style.display = "none";
+
+
+    let message = "";
+
+
+    if (targetScore >= 30) {
+
+        message =
+            "🔥 WOW! Anda memang laju! " +
+            targetScore +
+            " sasaran!";
+
+    } else if (targetScore >= 20) {
+
+        message =
+            "🏆 Hebat! " +
+            targetScore +
+            " sasaran berjaya!";
+
+    } else if (targetScore >= 10) {
+
+        message =
+            "👍 Bagus! Cuba pecahkan skor ini.";
+
+    } else {
+
+        message =
+            "😆 Cuba lagi! Anda boleh buat lebih baik.";
+
+    }
+
+
+    document.getElementById("targetMessage").innerText =
+        message;
+
+}
+
+
+/* =====================================================
+   GAME 5
+   BATU GUNTING KERTAS
+===================================================== */
+
+let playerScore = 0;
+
+let computerScore = 0;
+
+
+function playRPS(playerChoice) {
+
+    const choices = [
+        "batu",
+        "gunting",
+        "kertas"
+    ];
+
+
+    const computerChoice =
+        choices[
+            Math.floor(
+                Math.random() * choices.length
+            )
+        ];
+
+
+    let result = "";
+
+
+    if (playerChoice === computerChoice) {
+
+        result =
+            "😮 Seri! Anda dan komputer pilih " +
+            getEmoji(playerChoice);
+
+    }
+
+    else if (
+
+        (playerChoice === "batu" &&
+         computerChoice === "gunting")
+
+        ||
+
+        (playerChoice === "gunting" &&
+         computerChoice === "kertas")
+
+        ||
+
+        (playerChoice === "kertas" &&
+         computerChoice === "batu")
+
+    ) {
+
+        playerScore++;
+
+        result =
+            "🎉 ANDA MENANG!<br>" +
+            getEmoji(playerChoice) +
+            " Anda &nbsp; vs &nbsp; " +
+            getEmoji(computerChoice) +
+            " Komputer";
+
+    }
+
+    else {
+
+        computerScore++;
+
+        result =
+            "😈 Komputer menang!<br>" +
+            getEmoji(playerChoice) +
+            " Anda &nbsp; vs &nbsp; " +
+            getEmoji(computerChoice) +
+            " Komputer";
+
+    }
+
+
+    document.getElementById("playerScore").innerText =
+        playerScore;
+
+    document.getElementById("computerScore").innerText =
+        computerScore;
+
+
+    document.getElementById("rpsResult").innerHTML =
+        result;
+
+}
+
+
+function getEmoji(choice) {
+
+    if (choice === "batu") {
+        return "✊";
+    }
+
+    if (choice === "gunting") {
+        return "✌️";
+    }
+
+    return "✋";
+
+}
+
+
+function resetRPS() {
+
+    playerScore = 0;
+
+    computerScore = 0;
+
+
+    document.getElementById("playerScore").innerText =
+        0;
+
+    document.getElementById("computerScore").innerText =
+        0;
+
+    document.getElementById("rpsResult").innerHTML =
+        "Pilih satu! 👇";
+
+}
+
+
+/* =====================================================
+   MULAKAN REFLEX
+===================================================== */
+
+document.getElementById("reflexButton").innerText =
+    "▶ Mula Game";
+
+</script>
+
+
+</body>
+</html>
+```

@@ -1,0 +1,843 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Catatan - Dunia Kita</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f3ff;
+            color: #333;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 55px 20px;
+            background: linear-gradient(135deg, #e0c3fc, #f5e6ff);
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            color: #5a189a;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #5a189a;
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        /* NOTE FORM */
+        .note-form {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            margin-bottom: 35px;
+        }
+
+        .note-form h2 {
+            color: #6a1b9a;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e5d5f7;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+            outline: none;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            border-color: #9d4edd;
+        }
+
+        .input-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .button-area {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            padding: 11px 22px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #7b2cbf;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a189a;
+        }
+
+        .btn-secondary {
+            background: #eee;
+            color: #555;
+        }
+
+        .btn-secondary:hover {
+            background: #ddd;
+        }
+
+        /* SEARCH */
+        .search-box {
+            margin-bottom: 25px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 13px 18px;
+            border: 2px solid #e5d5f7;
+            border-radius: 25px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #9d4edd;
+        }
+
+        /* NOTES */
+        .notes-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 20px;
+        }
+
+        .note-card {
+            background: white;
+            padding: 22px;
+            border-radius: 18px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .note-card h3 {
+            color: #6a1b9a;
+            margin-bottom: 8px;
+            padding-right: 60px;
+        }
+
+        .note-date {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 15px;
+        }
+
+        .note-content {
+            color: #555;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .note-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .edit-btn,
+        .delete-btn {
+            border: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .edit-btn {
+            background: #e0c3fc;
+            color: #5a189a;
+        }
+
+        .delete-btn {
+            background: #ffe0e0;
+            color: #c62828;
+        }
+
+        .edit-btn:hover {
+            background: #d0a8f0;
+        }
+
+        .delete-btn:hover {
+            background: #ffcaca;
+        }
+
+        /* EMPTY */
+        .empty {
+            text-align: center;
+            background: white;
+            padding: 40px 20px;
+            border-radius: 18px;
+            color: #777;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+        }
+
+        .empty-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        /* TIP */
+        .tip-box {
+            margin-top: 40px;
+            background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .tip-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .tip-box p {
+            line-height: 1.6;
+        }
+
+        /* HOME */
+        .home-button {
+            display: block;
+            width: fit-content;
+            margin: 40px auto 10px;
+            text-decoration: none;
+            background: #7b2cbf;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .home-button:hover {
+            background: #5a189a;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 40px;
+            background: #4a148c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+
+            header {
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .note-form {
+                padding: 20px;
+            }
+
+            .notes-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <div class="logo">
+            🌈 Dunia Kita
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="belajar.html">Belajar</a>
+            <a href="permainan.html">Permainan</a>
+            <a href="kuiz.html">Kuiz</a>
+            <a href="tips.html">Tips</a>
+            <a href="resipi.html">Resipi</a>
+            <a href="catatan.html">Catatan</a>
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <h1>📝 Catatan Saya</h1>
+
+        <p>
+            Tulis, simpan dan urus catatan anda dengan mudah.
+        </p>
+
+    </section>
+
+
+    <!-- MAIN -->
+    <div class="container">
+
+        <!-- FORM -->
+        <div class="note-form">
+
+            <h2 id="formTitle">
+                ✏️ Tulis Catatan Baru
+            </h2>
+
+            <div class="input-group">
+
+                <label for="noteTitle">
+                    Tajuk Catatan
+                </label>
+
+                <input
+                    type="text"
+                    id="noteTitle"
+                    placeholder="Contoh: Idea Hari Ini"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="noteContent">
+                    Isi Catatan
+                </label>
+
+                <textarea
+                    id="noteContent"
+                    placeholder="Tulis catatan anda di sini..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="button-area">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="saveNote()"
+                    id="saveButton"
+                >
+                    💾 Simpan Catatan
+                </button>
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="clearForm()"
+                >
+                    🗑️ Kosongkan
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SENARAI CATATAN -->
+        <h2 class="section-title">
+            📚 Catatan Tersimpan
+        </h2>
+
+
+        <!-- SEARCH -->
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="🔍 Cari catatan..."
+                oninput="displayNotes()"
+            >
+
+        </div>
+
+
+        <!-- NOTES -->
+        <div id="notesList" class="notes-list"></div>
+
+
+        <!-- TIP -->
+        <div class="tip-box">
+
+            <h2>💡 Tip Catatan</h2>
+
+            <p>
+                Gunakan catatan untuk menyimpan idea, perkara penting,
+                senarai tugasan, rancangan harian atau apa sahaja yang
+                anda mahu ingat. 😊
+            </p>
+
+        </div>
+
+
+        <!-- HOME -->
+        <a href="index.html" class="home-button">
+            🏠 Kembali ke Home
+        </a>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        © 2026 Dunia Kita 🌈
+        <br>
+        Belajar • Bermain • Berkongsi • Berkarya
+
+    </footer>
+
+
+    <script>
+
+        /* =========================
+           DATA CATATAN
+        ========================= */
+
+        let notes = JSON.parse(
+            localStorage.getItem("duniaKitaNotes")
+        ) || [];
+
+        let editingId = null;
+
+
+        /* =========================
+           SIMPAN CATATAN
+        ========================= */
+
+        function saveNote() {
+
+            const title =
+                document.getElementById("noteTitle").value.trim();
+
+            const content =
+                document.getElementById("noteContent").value.trim();
+
+
+            /* Semak */
+
+            if (title === "" || content === "") {
+
+                alert("Sila isi tajuk dan catatan terlebih dahulu.");
+
+                return;
+            }
+
+
+            /* EDIT */
+
+            if (editingId !== null) {
+
+                const noteIndex = notes.findIndex(
+                    note => note.id === editingId
+                );
+
+                if (noteIndex !== -1) {
+
+                    notes[noteIndex].title = title;
+                    notes[noteIndex].content = content;
+
+                }
+
+                editingId = null;
+
+                document.getElementById("formTitle").textContent =
+                    "✏️ Tulis Catatan Baru";
+
+                document.getElementById("saveButton").textContent =
+                    "💾 Simpan Catatan";
+
+            }
+
+            /* CATATAN BARU */
+
+            else {
+
+                const newNote = {
+
+                    id: Date.now(),
+
+                    title: title,
+
+                    content: content,
+
+                    date: new Date().toLocaleString("ms-MY")
+
+                };
+
+                notes.unshift(newNote);
+
+            }
+
+
+            /* SIMPAN DALAM BROWSER */
+
+            localStorage.setItem(
+                "duniaKitaNotes",
+                JSON.stringify(notes)
+            );
+
+
+            clearForm();
+
+            displayNotes();
+
+        }
+
+
+        /* =========================
+           PAPAR CATATAN
+        ========================= */
+
+        function displayNotes() {
+
+            const notesList =
+                document.getElementById("notesList");
+
+            const search =
+                document.getElementById("searchInput")
+                .value
+                .toLowerCase()
+                .trim();
+
+
+            notesList.innerHTML = "";
+
+
+            /* FILTER */
+
+            const filteredNotes = notes.filter(function(note) {
+
+                return (
+                    note.title.toLowerCase().includes(search) ||
+                    note.content.toLowerCase().includes(search)
+                );
+
+            });
+
+
+            /* TIADA CATATAN */
+
+            if (filteredNotes.length === 0) {
+
+                notesList.innerHTML = `
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            📝
+                        </div>
+
+                        <h3>
+                            Tiada catatan dijumpai
+                        </h3>
+
+                        <p>
+                            Mula tulis catatan pertama anda di atas.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            /* PAPAR CATATAN */
+
+            filteredNotes.forEach(function(note) {
+
+                const card =
+                    document.createElement("div");
+
+                card.className = "note-card";
+
+
+                const title =
+                    document.createElement("h3");
+
+                title.textContent =
+                    "📝 " + note.title;
+
+
+                const date =
+                    document.createElement("div");
+
+                date.className = "note-date";
+
+                date.textContent =
+                    "📅 " + note.date;
+
+
+                const content =
+                    document.createElement("div");
+
+                content.className = "note-content";
+
+                content.textContent =
+                    note.content;
+
+
+                const actions =
+                    document.createElement("div");
+
+                actions.className = "note-actions";
+
+
+                /* EDIT BUTTON */
+
+                const editButton =
+                    document.createElement("button");
+
+                editButton.className = "edit-btn";
+
+                editButton.textContent =
+                    "✏️ Edit";
+
+                editButton.onclick = function() {
+
+                    editNote(note.id);
+
+                };
+
+
+                /* DELETE BUTTON */
+
+                const deleteButton =
+                    document.createElement("button");
+
+                deleteButton.className = "delete-btn";
+
+                deleteButton.textContent =
+                    "🗑️ Padam";
+
+                deleteButton.onclick = function() {
+
+                    deleteNote(note.id);
+
+                };
+
+
+                actions.appendChild(editButton);
+
+                actions.appendChild(deleteButton);
+
+
+                card.appendChild(title);
+
+                card.appendChild(date);
+
+                card.appendChild(content);
+
+                card.appendChild(actions);
+
+
+                notesList.appendChild(card);
+
+            });
+
+        }
+
+
+        /* =========================
+           EDIT CATATAN
+        ========================= */
+
+        function editNote(id) {
+
+            const note =
+                notes.find(note => note.id === id);
+
+
+            if (!note) {
+                return;
+            }
+
+
+            document.getElementById("noteTitle").value =
+                note.title;
+
+            document.getElementById("noteContent").value =
+                note.content;
+
+
+            editingId = id;
+
+
+            document.getElementById("formTitle").textContent =
+                "✏️ Edit Catatan";
+
+            document.getElementById("saveButton").textContent =
+                "💾 Kemaskini Catatan";
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* =========================
+           PADAM CATATAN
+        ========================= */
+
+        function deleteNote(id) {
+
+            const confirmDelete =
+                confirm("Adakah anda pasti mahu padam catatan ini?");
+
+
+            if (!confirmDelete) {
+                return;
+            }
+
+
+            notes = notes.filter(
+                note => note.id !== id
+            );
+
+
+            localStorage.setItem(
+                "duniaKitaNotes",
+                JSON.stringify(notes)
+            );
+
+
+            displayNotes();
+
+        }
+
+
+        /* =========================
+           KOSONGKAN FORM
+        ========================= */
+
+        function clearForm() {
+
+            document.getElementById("noteTitle").value = "";
+
+            document.getElementById("noteContent").value = "";
+
+
+            editingId = null;
+
+
+            document.getElementById("formTitle").textContent =
+                "✏️ Tulis Catatan Baru";
+
+            document.getElementById("saveButton").textContent =
+                "💾 Simpan Catatan";
+
+        }
+
+
+        /* =========================
+           PAPAR SEMASA MULA
+        ========================= */
+
+        displayNotes();
+
+    </script>
+
+</body>
+</html>
+```

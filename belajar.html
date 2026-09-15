@@ -1,0 +1,610 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar - Dunia Kita</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f4ff;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 55px 20px;
+            background: white;
+        }
+
+        .hero h1 {
+            color: #7b2cbf;
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 17px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #7b2cbf;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+
+        /* SUBJEK */
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .subject {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .subject:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(123,44,191,0.15);
+        }
+
+        .subject .icon {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .subject h3 {
+            color: #7b2cbf;
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .subject p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 15px;
+            min-height: 75px;
+        }
+
+        .fact-number {
+            color: #9d4edd;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 12px;
+            margin-bottom: 10px;
+        }
+
+        .fact-btn {
+            border: none;
+            background: #7b2cbf;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: auto;
+        }
+
+        .fact-btn:hover {
+            background: #5a189a;
+        }
+
+        /* FAKTA HARI INI */
+        .daily-fact {
+            margin-top: 45px;
+            background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .daily-fact h2 {
+            margin-bottom: 15px;
+        }
+
+        .daily-fact p {
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* CUBA FIKIR */
+        .thinking {
+            margin-top: 35px;
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .thinking h2 {
+            color: #7b2cbf;
+            margin-bottom: 15px;
+        }
+
+        .question {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .answer {
+            display: none;
+            margin-top: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .thinking button {
+            border: none;
+            background: #7b2cbf;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .thinking button:hover {
+            background: #5a189a;
+        }
+
+        .home-btn {
+            display: block;
+            width: fit-content;
+            margin: 35px auto;
+            text-decoration: none;
+            background: #7b2cbf;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .home-btn:hover {
+            background: #5a189a;
+        }
+
+        footer {
+            background: #2d1b3d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 850px) {
+            .subjects {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            header {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .subjects {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            nav {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🌈 Dunia Kita</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="belajar.html">Belajar</a>
+        <a href="permainan.html">Permainan</a>
+        <a href="kuiz.html">Kuiz</a>
+        <a href="tips.html">Tips</a>
+        <a href="resipi.html">Resipi</a>
+        <a href="catatan.html">Catatan</a>
+    </nav>
+</header>
+
+
+<section class="hero">
+    <h1>📚 Jom Belajar!</h1>
+    <p>Belajar sedikit setiap hari untuk menambah ilmu dan melatih minda.</p>
+</section>
+
+
+<div class="container">
+
+    <h2 class="section-title">📖 Subjek Menarik</h2>
+
+
+    <div class="subjects">
+
+        <!-- MATEMATIK -->
+        <div class="subject">
+            <div class="icon">🧮</div>
+            <h3>Matematik</h3>
+
+            <p id="mathFact">
+                Sifar ialah nombor yang sangat penting dalam matematik.
+            </p>
+
+            <div class="fact-number" id="mathNumber">
+                Fakta 1 daripada 10
+            </div>
+
+            <button class="fact-btn" onclick="nextFact('math')">
+                🔄 Fakta Lain
+            </button>
+        </div>
+
+
+        <!-- SAINS -->
+        <div class="subject">
+            <div class="icon">🔬</div>
+            <h3>Sains</h3>
+
+            <p id="scienceFact">
+                Cahaya Matahari mengambil kira-kira 8 minit untuk sampai ke Bumi.
+            </p>
+
+            <div class="fact-number" id="scienceNumber">
+                Fakta 1 daripada 10
+            </div>
+
+            <button class="fact-btn" onclick="nextFact('science')">
+                🔄 Fakta Lain
+            </button>
+        </div>
+
+
+        <!-- DUNIA -->
+        <div class="subject">
+            <div class="icon">🌎</div>
+            <h3>Dunia</h3>
+
+            <p id="worldFact">
+                Bumi mempunyai satu satelit semula jadi, iaitu Bulan.
+            </p>
+
+            <div class="fact-number" id="worldNumber">
+                Fakta 1 daripada 10
+            </div>
+
+            <button class="fact-btn" onclick="nextFact('world')">
+                🔄 Fakta Lain
+            </button>
+        </div>
+
+
+        <!-- BAHASA -->
+        <div class="subject">
+            <div class="icon">📚</div>
+            <h3>Bahasa</h3>
+
+            <p id="languageFact">
+                Membaca membantu kita menambah kosa kata dan memahami idea baharu.
+            </p>
+
+            <div class="fact-number" id="languageNumber">
+                Fakta 1 daripada 10
+            </div>
+
+            <button class="fact-btn" onclick="nextFact('language')">
+                🔄 Fakta Lain
+            </button>
+        </div>
+
+
+        <!-- TEKNOLOGI -->
+        <div class="subject">
+            <div class="icon">💻</div>
+            <h3>Teknologi</h3>
+
+            <p id="technologyFact">
+                Komputer menggunakan sistem nombor binari yang terdiri daripada 0 dan 1.
+            </p>
+
+            <div class="fact-number" id="technologyNumber">
+                Fakta 1 daripada 10
+            </div>
+
+            <button class="fact-btn" onclick="nextFact('technology')">
+                🔄 Fakta Lain
+            </button>
+        </div>
+
+
+        <!-- PENGETAHUAN AM -->
+        <div class="subject">
+            <div class="icon">💡</div>
+            <h3>Pengetahuan Am</h3>
+
+            <p id="generalFact">
+                Soalan "mengapa?" boleh membantu kita melihat sesuatu dengan lebih kritikal.
+            </p>
+
+            <div class="fact-number" id="generalNumber">
+                Fakta 1 daripada 10
+            </div>
+
+            <button class="fact-btn" onclick="nextFact('general')">
+                🔄 Fakta Lain
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- FAKTA HARI INI -->
+    <div class="daily-fact">
+        <h2>✨ Fakta Menarik Hari Ini</h2>
+
+        <p>
+            🧠 Otak kita belajar dengan lebih baik apabila kita aktif
+            berfikir, membuat hubungan antara maklumat dan mencuba perkara baharu.
+            <br><br>
+            Jadi, jangan hanya hafal — cuba faham dan tanya "kenapa?".
+        </p>
+    </div>
+
+
+    <!-- CUBA FIKIR -->
+    <div class="thinking">
+
+        <h2>🧠 Cuba Fikir!</h2>
+
+        <div class="question">
+            Jika 5 mesin boleh menghasilkan 5 barang dalam 5 minit,
+            berapa lama 100 mesin menghasilkan 100 barang?
+        </div>
+
+        <button onclick="showAnswer()">
+            👀 Lihat Jawapan
+        </button>
+
+        <div class="answer" id="answer">
+            <strong>Jawapan: 5 minit! 🎯</strong>
+            <br><br>
+
+            Setiap mesin menghasilkan 1 barang dalam 5 minit.
+            Jadi 100 mesin boleh menghasilkan 100 barang dalam masa yang sama,
+            iaitu 5 minit.
+        </div>
+
+    </div>
+
+
+    <a href="index.html" class="home-btn">
+        🏠 Kembali ke Home
+    </a>
+
+</div>
+
+
+<footer>
+    <p>© 2026 Dunia Kita 🌈 | Belajar • Bermain • Berkongsi</p>
+</footer>
+
+
+<script>
+
+    /* ==========================================
+       10 FAKTA UNTUK SETIAP SUBJEK
+       ========================================== */
+
+    const facts = {
+
+        math: [
+            "Sifar ialah nombor yang sangat penting dalam matematik.",
+            "Nombor perdana hanya boleh dibahagi tepat dengan 1 dan dirinya sendiri.",
+            "Segi tiga mempunyai 3 sisi dan jumlah sudutnya ialah 180°.",
+            "Satu jam mempunyai 60 minit.",
+            "Nombor genap boleh dibahagi dengan 2 tanpa baki.",
+            "Simbol ∞ digunakan untuk mewakili sesuatu yang tidak terhingga.",
+            "1 bukan nombor perdana kerana ia hanya mempunyai satu faktor.",
+            "Darab sebenarnya boleh dianggap sebagai penambahan berulang.",
+            "Corak nombor boleh membantu kita membuat ramalan dan menyelesaikan masalah.",
+            "Permainan seperti Sudoku boleh melatih kemahiran logik dan mengenal corak."
+        ],
+
+
+        science: [
+            "Cahaya Matahari mengambil kira-kira 8 minit untuk sampai ke Bumi.",
+            "Air boleh wujud dalam tiga keadaan: pepejal, cecair dan gas.",
+            "Bumi berputar pada paksinya dan mengambil kira-kira 24 jam untuk satu putaran.",
+            "Tumbuhan menggunakan cahaya Matahari untuk menghasilkan makanan melalui fotosintesis.",
+            "Bunyi memerlukan medium seperti udara, air atau pepejal untuk bergerak.",
+            "Jantung manusia mengepam darah ke seluruh badan.",
+            "Bulan tidak menghasilkan cahaya sendiri tetapi memantulkan cahaya Matahari.",
+            "Air mendidih pada kira-kira 100°C pada tekanan atmosfera biasa.",
+            "DNA menyimpan maklumat genetik yang penting untuk kehidupan.",
+            "Eksperimen membantu saintis menguji sama ada sesuatu idea atau hipotesis benar."
+        ],
+
+
+        world: [
+            "Bumi ialah planet ketiga dari Matahari.",
+            "Bulan ialah satelit semula jadi Bumi.",
+            "Asia ialah benua terbesar mengikut keluasan.",
+            "Lautan Pasifik ialah lautan terbesar di dunia.",
+            "Antartika ialah benua yang sangat sejuk dan diliputi ais.",
+            "Gunung Everest ialah gunung tertinggi di atas paras laut.",
+            "Bumi mempunyai tujuh benua.",
+            "Peta membantu kita memahami kedudukan sesuatu tempat.",
+            "Setiap negara mempunyai budaya, makanan dan tradisi yang berbeza.",
+            "Mempelajari geografi membantu kita memahami hubungan antara manusia dan tempat."
+        ],
+
+
+        language: [
+            "Membaca membantu kita menambah kosa kata.",
+            "Peribahasa menggunakan bahasa yang ringkas tetapi mempunyai maksud yang mendalam.",
+            "Sinonim ialah perkataan yang mempunyai maksud hampir sama.",
+            "Antonim ialah perkataan yang mempunyai maksud berlawanan.",
+            "Membaca cerita boleh membantu kita memahami perspektif orang lain.",
+            "Menulis membantu kita menyusun idea dengan lebih teratur.",
+            "Bahasa digunakan untuk menyampaikan idea, emosi dan maklumat.",
+            "Mempelajari perkataan baharu boleh membantu meningkatkan kemahiran komunikasi.",
+            "Tanda baca membantu menjadikan sesuatu ayat lebih jelas.",
+            "Membaca secara konsisten lebih baik daripada membaca banyak sekali-sekala."
+        ],
+
+
+        technology: [
+            "Komputer menggunakan sistem binari yang terdiri daripada 0 dan 1.",
+            "CPU sering dianggap sebagai salah satu komponen utama yang memproses arahan komputer.",
+            "Internet membolehkan komputer berkomunikasi antara satu sama lain.",
+            "Kod komputer terdiri daripada arahan yang memberitahu komputer apa yang perlu dilakukan.",
+            "HTML digunakan untuk membina struktur asas halaman web.",
+            "CSS digunakan untuk menggayakan dan mencantikkan halaman web.",
+            "JavaScript boleh menjadikan laman web lebih interaktif.",
+            "Kata laluan yang panjang dan unik biasanya lebih sukar untuk diteka.",
+            "Data boleh disimpan dalam bentuk teks, gambar, video dan bunyi.",
+            "Teknologi berubah dengan cepat, jadi pembelajaran berterusan sangat berguna."
+        ],
+
+
+        general: [
+            "Bertanya 'mengapa?' boleh membantu kita berfikir dengan lebih kritikal.",
+            "Teka-teki logik boleh melatih kemahiran menyelesaikan masalah.",
+            "Mengajar orang lain sesuatu boleh membantu kita memahami perkara itu dengan lebih baik.",
+            "Tidur yang cukup penting untuk pembelajaran dan ingatan.",
+            "Membuat nota ringkas boleh membantu kita mengingat isi penting.",
+            "Membandingkan dua idea boleh membantu kita melihat persamaan dan perbezaan.",
+            "Mencari bukti sebelum membuat kesimpulan ialah amalan pemikiran kritikal.",
+            "Belajar daripada kesilapan boleh membantu kita memperbaiki cara berfikir.",
+            "Rasa ingin tahu mendorong kita untuk mencari jawapan dan mempelajari perkara baharu.",
+            "Otak menjadi lebih aktif apabila kita cuba menyelesaikan masalah dan membuat keputusan."
+        ]
+
+    };
+
+
+    /* ==========================================
+       KEDUDUKAN FAKTA SEMASA
+       ========================================== */
+
+    let currentFact = {
+        math: 0,
+        science: 0,
+        world: 0,
+        language: 0,
+        technology: 0,
+        general: 0
+    };
+
+
+    /* ==========================================
+       FUNGSI TUKAR FAKTA
+       ========================================== */
+
+    function nextFact(subject) {
+
+        currentFact[subject]++;
+
+        if (currentFact[subject] >= facts[subject].length) {
+            currentFact[subject] = 0;
+        }
+
+        const factText = document.getElementById(subject + "Fact");
+        const factNumber = document.getElementById(subject + "Number");
+
+        factText.textContent = facts[subject][currentFact[subject]];
+
+        factNumber.textContent =
+            "Fakta " + (currentFact[subject] + 1) + " daripada 10";
+    }
+
+
+    /* ==========================================
+       SOALAN LOGIK
+       ========================================== */
+
+    function showAnswer() {
+
+        const answer = document.getElementById("answer");
+
+        if (answer.style.display === "block") {
+            answer.style.display = "none";
+        } else {
+            answer.style.display = "block";
+        }
+
+    }
+
+</script>
+
+</body>
+</html>
+```
