@@ -41,18 +41,27 @@
             flex-wrap: wrap;
         }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 20px;
-            transition: 0.3s;
-        }
+         nav {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
 
-        nav a:hover,
-        nav a.active {
-            background: rgba(255,255,255,0.2);
-        }
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 22px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: .25s ease;
+    }
+
+    nav a:hover, nav a.active {
+        background: rgba(255,255,255,.20);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+    }
 
         /* HERO */
         .hero {
@@ -328,7 +337,15 @@
         <a href="permainan.html">Permainan</a>
         <a href="kuiz.html">Kuiz</a>
         <a href="tips.html" class="active">Tips</a>
-        <a href="resipi.html">Resipi</a>
+        <a href="resipi.html">Resipi</a>	 <a href="my_hero_mosti.html">
+            My Hero
+        </a>
+ <a href="video.html">
+            Penerangan
+        </a>
+		<a href="qr.html">
+            QR Code
+        </a>
         <a href="catatan.html">Catatan</a>
     </nav>
 </header>
@@ -550,11 +567,17 @@
 
 
 <!-- FOOTER -->
+
 <footer>
-    <p>🌈 Dunia Kita</p>
-    <p>Belajar • Bermain • Berkongsi • Berubah</p>
-    <p>© 2026 Dunia Kita</p>
+
+    <p>
+        © 2026 Dunia Kita 🌈
+        | Belajar • Bermain • Berkongsi
+    </p>
+
 </footer>
+</body>
+</html>
 
 
 <script>

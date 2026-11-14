@@ -31,8 +31,11 @@
         color: var(--navy);
         line-height: 1.6;
     }
+	
+	
 
-    header {
+
+ /*   header {
         background: linear-gradient(120deg, var(--teal-dark), var(--teal));
         color: white;
         padding: 18px 8%;
@@ -42,18 +45,33 @@
         flex-wrap: wrap;
         gap: 16px;
         box-shadow: 0 4px 16px rgba(24, 94, 101, .18);
+    }*/
+	
+	 header {
+        background: linear-gradient(120deg, var(--teal-dark), var(--teal));
+        color: white;
+        padding: 17px 7%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 16px rgba(24, 94, 101, 0.20);
     }
 
     .logo { font-size: 25px; font-weight: 800; }
 
     nav { display: flex; gap: 7px; flex-wrap: wrap; }
 
-    nav a {
+   nav a {
         color: white;
         text-decoration: none;
-        font-weight: bold;
         padding: 8px 12px;
         border-radius: 22px;
+        font-size: 14px;
+        font-weight: 600;
         transition: .25s ease;
     }
 
@@ -233,13 +251,16 @@
 
     .home-btn:hover { background: var(--teal-dark); }
 
+    
     footer {
         background: var(--navy);
         color: white;
         text-align: center;
-        padding: 22px;
-        margin-top: 42px;
+        padding: 25px 15px;
+        margin-top: 20px;
     }
+
+    footer p { font-size: 14px; opacity: .92; }
 
     @media (max-width: 850px) {
         .subjects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -264,17 +285,50 @@
 <body>
 
 <header>
-    <div class="logo">🌈 Dunia Kita</div>
+
+    <div class="logo">
+        🌈 Dunia Kita
+    </div>
 
     <nav>
-        <a href="index.html">Home</a>
-        <a href="belajar.html">Belajar</a>
-        <a href="permainan.html">Permainan</a>
-        <a href="kuiz.html">Kuiz</a>
-        <a href="tips.html">Tips</a>
-        <a href="resipi.html">Resipi</a>
-        <a href="catatan.html">Catatan</a>
+
+        <a href="index.html" class="active">Home</a>
+
+        <a href="belajar.html">
+            Belajar
+        </a>
+
+        <a href="permainan.html">
+            Permainan
+        </a>
+
+        <a href="kuiz.html">
+            Kuiz
+        </a>
+
+        <a href="tips.html">
+            Tips
+        </a>
+
+        <a href="resipi.html">
+            Resipi
+        </a>
+		 <a href="my_hero_mosti.html">
+            My Hero
+        </a>
+ <a href="video.html">
+            Penerangan
+        </a>
+		<a href="qr.html">
+            QR Code
+        </a>
+
+        <a href="catatan.html">
+            Catatan
+        </a>
+
     </nav>
+
 </header>
 
 
@@ -608,4 +662,4 @@
 
 </body>
 </html>
-```
+

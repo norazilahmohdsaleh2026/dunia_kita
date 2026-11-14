@@ -9,9 +9,28 @@
 body{background:linear-gradient(135deg,#DDF3F0,#FFF3D6);color:#293B50}
 header{background:linear-gradient(135deg,#247C83,#3A9A98);color:white;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;box-shadow:0 4px 15px rgba(41,59,80,.12)}
 .logo{font-size:25px;font-weight:bold}
-nav{display:flex;gap:7px;flex-wrap:wrap}
-nav a{color:white;text-decoration:none;padding:8px 12px;border-radius:20px;transition:.3s}
-nav a:hover,nav a.active{background:rgba(255,255,255,.22)}
+ nav {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 22px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: .25s ease;
+    }
+
+    nav a:hover, nav a.active {
+        background: rgba(255,255,255,.20);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+    }
+
 .hero{text-align:center;padding:50px 20px 35px}
 .hero h1{font-size:42px;color:#247C83;margin-bottom:12px}
 .hero p{max-width:700px;margin:auto;color:#526575;font-size:18px;line-height:1.7}
@@ -65,7 +84,15 @@ header{justify-content:center;gap:15px}
 <a href="permainan.html" class="active">Permainan</a>
 <a href="kuiz.html">Kuiz</a>
 <a href="tips.html">Tips</a>
-<a href="resipi.html">Resipi</a>
+<a href="resipi.html">Resipi</a> <a href="my_hero_mosti.html">
+            My Hero
+        </a>
+ <a href="video.html">
+            Penerangan
+        </a>
+			<a href="qr.html">
+            QR Code
+        </a>
 <a href="catatan.html">Catatan</a>
 </nav>
 </header>
@@ -143,9 +170,12 @@ header{justify-content:center;gap:15px}
 </div>
 
 <footer>
-<p>🌈 Dunia Kita</p>
-<p>Belajar • Bermain • Berkongsi • Berseronok</p>
-<p>© 2026 Dunia Kita</p>
+
+    <p>
+        © 2026 Dunia Kita 🌈
+        | Belajar • Bermain • Berkongsi
+    </p>
+
 </footer>
 
 <script>

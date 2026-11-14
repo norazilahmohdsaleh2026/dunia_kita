@@ -36,22 +36,26 @@
         }
 
         nav {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 8px 12px;
-            border-radius: 8px;
-        }
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 22px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: .25s ease;
+    }
 
-        nav a:hover {
-            background: rgba(255,255,255,0.2);
-        }
+    nav a:hover, nav a.active {
+        background: rgba(255,255,255,.20);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+    }
 
         .hero {
             background: #FFF3D6;
@@ -285,14 +289,8 @@
             background: #F5A64F;
         }
 
-        footer {
-            background: #293B50;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
+     footer{background:#293B50;color:white;text-align:center;padding:25px 20px}
+footer p{margin:5px}
         @media (max-width: 600px) {
             header {
                 justify-content: center;
@@ -331,7 +329,15 @@
         <a href="permainan.html">Permainan</a>
         <a href="kuiz.html">Kuiz</a>
         <a href="tips.html">Tips</a>
-        <a href="resipi.html">Resipi</a>
+        <a href="resipi.html">Resipi</a><a href="resipi.html">Resipi</a> <a href="my_hero_mosti.html">
+            My Hero
+        </a>
+ <a href="video.html">
+            Penerangan
+        </a>
+			<a href="qr.html">
+            QR Code
+        </a>
         <a href="catatan.html">Catatan</a>
     </nav>
 
@@ -442,10 +448,12 @@
 <footer>
 
     <p>
-        © 2026 Dunia Kita 🌈 | Belajar • Bermain • Berkongsi
+        © 2026 Dunia Kita 🌈
+        | Belajar • Bermain • Berkongsi
     </p>
 
 </footer>
+
 
 
 <script>
