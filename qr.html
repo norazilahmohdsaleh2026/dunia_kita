@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dunia Kita 🌈</title>
+
+    
+<style>
+    :root {
+        --mint: #DDF3F0;
+        --mint-light: #F3FAF8;
+        --teal: #247C83;
+        --teal-dark: #185E65;
+        --orange: #FFB86B;
+        --orange-dark: #E99542;
+        --cream: #FFF3D6;
+        --navy: #293B50;
+        --muted: #64748B;
+        --white: #FFFFFF;
+        --shadow: 0 8px 24px rgba(36, 124, 131, 0.10);
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: var(--mint-light);
+        color: var(--navy);
+        line-height: 1.6;
+    }
+
+    header {
+        background: linear-gradient(120deg, var(--teal-dark), var(--teal));
+        color: white;
+        padding: 17px 7%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 16px rgba(24, 94, 101, 0.20);
+    }
+
+    .logo {
+        font-size: 25px;
+        font-weight: 800;
+        letter-spacing: .2px;
+        white-space: nowrap;
+    }
+
+    nav {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 22px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: .25s ease;
+    }
+
+    nav a:hover, nav a.active {
+        background: rgba(255,255,255,.20);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+    }
+
+    .hero {
+        text-align: center;
+        padding: 82px 20px 78px;
+        background:
+            radial-gradient(circle at 15% 20%, rgba(255,184,107,.28), transparent 25%),
+            radial-gradient(circle at 85% 75%, rgba(36,124,131,.14), transparent 28%),
+            linear-gradient(135deg, var(--mint), #F8FCFA 70%);
+    }
+
+    .hero h1 {
+        font-size: clamp(30px, 5vw, 45px);
+        line-height: 1.2;
+        color: var(--teal-dark);
+        margin-bottom: 17px;
+    }
+
+    .hero p {
+        max-width: 700px;
+        margin: auto;
+        font-size: 18px;
+        color: #526575;
+    }
+
+    .hero-button {
+        display: inline-block;
+        margin-top: 27px;
+        padding: 13px 27px;
+        background: var(--orange);
+        color: var(--navy);
+        text-decoration: none;
+        border-radius: 28px;
+        font-weight: 800;
+        box-shadow: 0 5px 13px rgba(233,149,66,.22);
+        transition: .25s ease;
+    }
+
+    .hero-button:hover {
+        background: var(--orange-dark);
+        color: white;
+        transform: translateY(-3px);
+    }
+
+    section { padding: 58px 7%; }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .section-title h2 {
+        color: var(--teal-dark);
+        font-size: 30px;
+        margin-bottom: 8px;
+    }
+
+    .section-title p { color: var(--muted); }
+
+    .activity-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .card {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 30px 22px;
+        text-align: center;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: var(--shadow);
+        transition: .25s ease;
+        border: 1px solid #E4F0ED;
+    }
+
+    .card:hover {
+        transform: translateY(-6px);
+        border-color: var(--orange);
+        box-shadow: 0 14px 28px rgba(36,124,131,.15);
+    }
+
+    .card .icon {
+        font-size: 45px;
+        margin-bottom: 13px;
+    }
+
+    .card h3 {
+        color: var(--teal);
+        margin-bottom: 9px;
+        font-size: 20px;
+    }
+
+    .card p {
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 14px;
+    }
+
+    .challenge-section { background: #EAF6F3; }
+
+    .challenge-box {
+        max-width: 850px;
+        margin: auto;
+        background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+        color: white;
+        border-radius: 26px;
+        padding: 36px;
+        box-shadow: 0 12px 30px rgba(24,94,101,.18);
+    }
+
+    .challenge-label {
+        display: inline-block;
+        background: rgba(255,255,255,.17);
+        padding: 7px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+
+    .challenge-box h2 { font-size: 28px; margin-bottom: 10px; }
+    .challenge-box > p { line-height: 1.7; }
+
+    .question-box {
+        background: white;
+        color: var(--navy);
+        border-radius: 19px;
+        padding: 25px;
+        margin-top: 25px;
+    }
+
+    .question-box h3 {
+        color: var(--teal-dark);
+        font-size: 20px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .options {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .option-btn {
+        border: 2px solid #D8EAE6;
+        background: #F5FAF8;
+        color: var(--navy);
+        padding: 13px;
+        border-radius: 13px;
+        cursor: pointer;
+        font-size: 15px;
+        transition: .2s ease;
+    }
+
+    .option-btn:hover {
+        border-color: var(--teal);
+        background: var(--mint);
+    }
+
+    .option-btn.correct {
+        background: #DDF5E4;
+        border-color: #39A96B;
+        color: #176B3A;
+    }
+
+    .option-btn.wrong {
+        background: #FFE5E2;
+        border-color: #E56B63;
+        color: #9F302B;
+    }
+
+    .option-btn:disabled { cursor: default; }
+
+    .challenge-result {
+        margin-top: 18px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 16px;
+        min-height: 24px;
+    }
+
+    .new-question-btn, .random-button {
+        border: none;
+        background: var(--orange);
+        color: var(--navy);
+        padding: 13px 23px;
+        border-radius: 26px;
+        cursor: pointer;
+        font-weight: 800;
+        transition: .25s ease;
+    }
+
+    .new-question-btn {
+        display: block;
+        margin: 20px auto 0;
+    }
+
+    .new-question-btn:hover, .random-button:hover {
+        background: var(--orange-dark);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .random-section { background: var(--mint-light); }
+
+    .random-box {
+        max-width: 850px;
+        margin: auto;
+        background: white;
+        border: 1px solid #E4F0ED;
+        border-radius: 25px;
+        padding: 36px;
+        text-align: center;
+        box-shadow: var(--shadow);
+    }
+
+    .random-icon { font-size: 60px; margin-bottom: 12px; }
+    .random-box h2 { color: var(--teal-dark); margin-bottom: 10px; }
+    .random-box p { color: var(--muted); line-height: 1.7; }
+
+    .random-button { margin-top: 22px; font-size: 15px; }
+
+    .random-result {
+        display: none;
+        margin-top: 25px;
+        padding: 22px;
+        border-radius: 18px;
+        background: var(--cream);
+    }
+
+    .random-result h3 {
+        color: var(--teal-dark);
+        margin-bottom: 8px;
+        font-size: 22px;
+    }
+
+    .random-result p { margin-bottom: 15px; }
+
+    .random-link {
+        display: inline-block;
+        background: var(--teal);
+        color: white;
+        text-decoration: none;
+        padding: 11px 22px;
+        border-radius: 25px;
+        font-weight: bold;
+        transition: .2s ease;
+    }
+
+    .random-link:hover { background: var(--teal-dark); }
+
+    .stats {
+        max-width: 850px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .stat-card {
+        background: white;
+        padding: 26px;
+        text-align: center;
+        border-radius: 19px;
+        border: 1px solid #E4F0ED;
+        box-shadow: var(--shadow);
+    }
+
+    .stat-card .stat-icon { font-size: 32px; margin-bottom: 8px; }
+
+    .stat-number {
+        font-size: 29px;
+        font-weight: 800;
+        color: var(--teal);
+    }
+
+    .stat-card p { color: var(--muted); margin-top: 5px; font-size: 14px; }
+
+    .info-box {
+        max-width: 850px;
+        margin: auto;
+        background: linear-gradient(120deg, var(--teal-dark), var(--teal));
+        color: white;
+        border-radius: 24px;
+        padding: 42px 30px;
+        text-align: center;
+        box-shadow: 0 10px 28px rgba(24,94,101,.17);
+    }
+
+    .info-box h2 { margin-bottom: 12px; }
+    .info-box p { line-height: 1.8; }
+
+    footer {
+        background: var(--navy);
+        color: white;
+        text-align: center;
+        padding: 25px 15px;
+        margin-top: 20px;
+    }
+
+    footer p { font-size: 14px; opacity: .92; }
+
+    @media (max-width: 900px) {
+        .activity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        header { flex-direction: column; gap: 13px; }
+        nav { justify-content: center; }
+    }
+
+    @media (max-width: 600px) {
+        section { padding: 45px 5%; }
+        .activity-grid, .options, .stats { grid-template-columns: 1fr; }
+        .hero { padding: 60px 18px; }
+        .hero p { font-size: 16px; }
+        .challenge-box, .random-box { padding: 25px 18px; }
+        nav { gap: 4px; }
+        nav a { font-size: 13px; padding: 7px 9px; }
+        .section-title h2 { font-size: 26px; }
+    }
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        🌈 Dunia Kita
+    </div>
+
+    <nav>
+
+        <a href="index.html" class="active">Home</a>
+
+        <a href="belajar.html">
+            Belajar
+        </a>
+
+        <a href="permainan.html">
+            Permainan
+        </a>
+
+        <a href="kuiz.html">
+            Kuiz
+        </a>
+
+        <a href="tips.html">
+            Tips
+        </a>
+
+        <a href="resipi.html">
+            Resipi
+        </a>
+		 <a href="my_hero_mosti.html">
+            My Hero
+        </a>
+ <a href="video.html">
+            Penerangan
+        </a>
+		<a href="qr.html">
+            QR Code
+        </a>
+
+        <a href="catatan.html">
+            Catatan
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<body>
+<div align="center"><br><br>
+    <h1></h1>
+	
+	
+    <h1>QR Code</h1>
+
+
+   <img src="qr.png" alt="QR CODE" width="30%">
+
+    <br><br>
+   
+</div>
+
+
+
+<footer>
+
+    <p>
+        © 2026 Dunia Kita 🌈
+        | Belajar • Bermain • Berkongsi
+    </p>
+
+</footer>
+</body>
+</html>

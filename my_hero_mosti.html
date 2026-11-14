@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dunia Kita 🌈</title>
+
+    
+<style>
+    :root {
+        --mint: #DDF3F0;
+        --mint-light: #F3FAF8;
+        --teal: #247C83;
+        --teal-dark: #185E65;
+        --orange: #FFB86B;
+        --orange-dark: #E99542;
+        --cream: #FFF3D6;
+        --navy: #293B50;
+        --muted: #64748B;
+        --white: #FFFFFF;
+        --shadow: 0 8px 24px rgba(36, 124, 131, 0.10);
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: var(--mint-light);
+        color: var(--navy);
+        line-height: 1.6;
+    }
+
+    header1 {
+        background: linear-gradient(120deg, var(--teal-dark), var(--teal));
+        color: white;
+        padding: 17px 7%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 16px rgba(24, 94, 101, 0.20);
+    }
+
+    .logo {
+        font-size: 25px;
+        font-weight: 800;
+        letter-spacing: .2px;
+        white-space: nowrap;
+    }
+
+    nav {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 22px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: .25s ease;
+    }
+
+    nav a:hover, nav a.active {
+        background: rgba(255,255,255,.20);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+    }
+
+    .hero {
+        text-align: center;
+        padding: 82px 20px 78px;
+        background:
+            radial-gradient(circle at 15% 20%, rgba(255,184,107,.28), transparent 25%),
+            radial-gradient(circle at 85% 75%, rgba(36,124,131,.14), transparent 28%),
+            linear-gradient(135deg, var(--mint), #F8FCFA 70%);
+    }
+
+    .hero h1 {
+        font-size: clamp(30px, 5vw, 45px);
+        line-height: 1.2;
+        color: var(--teal-dark);
+        margin-bottom: 17px;
+    }
+
+    .hero p {
+        max-width: 700px;
+        margin: auto;
+        font-size: 18px;
+        color: #526575;
+    }
+
+    .hero-button {
+        display: inline-block;
+        margin-top: 27px;
+        padding: 13px 27px;
+        background: var(--orange);
+        color: var(--navy);
+        text-decoration: none;
+        border-radius: 28px;
+        font-weight: 800;
+        box-shadow: 0 5px 13px rgba(233,149,66,.22);
+        transition: .25s ease;
+    }
+
+    .hero-button:hover {
+        background: var(--orange-dark);
+        color: white;
+        transform: translateY(-3px);
+    }
+
+    section { padding: 58px 7%; }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .section-title h2 {
+        color: var(--teal-dark);
+        font-size: 30px;
+        margin-bottom: 8px;
+    }
+
+    .section-title p { color: var(--muted); }
+
+    .activity-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .card {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 30px 22px;
+        text-align: center;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: var(--shadow);
+        transition: .25s ease;
+        border: 1px solid #E4F0ED;
+    }
+
+    .card:hover {
+        transform: translateY(-6px);
+        border-color: var(--orange);
+        box-shadow: 0 14px 28px rgba(36,124,131,.15);
+    }
+
+    .card .icon {
+        font-size: 45px;
+        margin-bottom: 13px;
+    }
+
+    .card h3 {
+        color: var(--teal);
+        margin-bottom: 9px;
+        font-size: 20px;
+    }
+
+    .card p {
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 14px;
+    }
+
+    .challenge-section { background: #EAF6F3; }
+
+    .challenge-box {
+        max-width: 850px;
+        margin: auto;
+        background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+        color: white;
+        border-radius: 26px;
+        padding: 36px;
+        box-shadow: 0 12px 30px rgba(24,94,101,.18);
+    }
+
+    .challenge-label {
+        display: inline-block;
+        background: rgba(255,255,255,.17);
+        padding: 7px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+
+    .challenge-box h2 { font-size: 28px; margin-bottom: 10px; }
+    .challenge-box > p { line-height: 1.7; }
+
+    .question-box {
+        background: white;
+        color: var(--navy);
+        border-radius: 19px;
+        padding: 25px;
+        margin-top: 25px;
+    }
+
+    .question-box h3 {
+        color: var(--teal-dark);
+        font-size: 20px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .options {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .option-btn {
+        border: 2px solid #D8EAE6;
+        background: #F5FAF8;
+        color: var(--navy);
+        padding: 13px;
+        border-radius: 13px;
+        cursor: pointer;
+        font-size: 15px;
+        transition: .2s ease;
+    }
+
+    .option-btn:hover {
+        border-color: var(--teal);
+        background: var(--mint);
+    }
+
+    .option-btn.correct {
+        background: #DDF5E4;
+        border-color: #39A96B;
+        color: #176B3A;
+    }
+
+    .option-btn.wrong {
+        background: #FFE5E2;
+        border-color: #E56B63;
+        color: #9F302B;
+    }
+
+    .option-btn:disabled { cursor: default; }
+
+    .challenge-result {
+        margin-top: 18px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 16px;
+        min-height: 24px;
+    }
+
+    .new-question-btn, .random-button {
+        border: none;
+        background: var(--orange);
+        color: var(--navy);
+        padding: 13px 23px;
+        border-radius: 26px;
+        cursor: pointer;
+        font-weight: 800;
+        transition: .25s ease;
+    }
+
+    .new-question-btn {
+        display: block;
+        margin: 20px auto 0;
+    }
+
+    .new-question-btn:hover, .random-button:hover {
+        background: var(--orange-dark);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .random-section { background: var(--mint-light); }
+
+    .random-box {
+        max-width: 850px;
+        margin: auto;
+        background: white;
+        border: 1px solid #E4F0ED;
+        border-radius: 25px;
+        padding: 36px;
+        text-align: center;
+        box-shadow: var(--shadow);
+    }
+
+    .random-icon { font-size: 60px; margin-bottom: 12px; }
+    .random-box h2 { color: var(--teal-dark); margin-bottom: 10px; }
+    .random-box p { color: var(--muted); line-height: 1.7; }
+
+    .random-button { margin-top: 22px; font-size: 15px; }
+
+    .random-result {
+        display: none;
+        margin-top: 25px;
+        padding: 22px;
+        border-radius: 18px;
+        background: var(--cream);
+    }
+
+    .random-result h3 {
+        color: var(--teal-dark);
+        margin-bottom: 8px;
+        font-size: 22px;
+    }
+
+    .random-result p { margin-bottom: 15px; }
+
+    .random-link {
+        display: inline-block;
+        background: var(--teal);
+        color: white;
+        text-decoration: none;
+        padding: 11px 22px;
+        border-radius: 25px;
+        font-weight: bold;
+        transition: .2s ease;
+    }
+
+    .random-link:hover { background: var(--teal-dark); }
+
+    .stats {
+        max-width: 850px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .stat-card {
+        background: white;
+        padding: 26px;
+        text-align: center;
+        border-radius: 19px;
+        border: 1px solid #E4F0ED;
+        box-shadow: var(--shadow);
+    }
+
+    .stat-card .stat-icon { font-size: 32px; margin-bottom: 8px; }
+
+    .stat-number {
+        font-size: 29px;
+        font-weight: 800;
+        color: var(--teal);
+    }
+
+    .stat-card p { color: var(--muted); margin-top: 5px; font-size: 14px; }
+
+    .info-box {
+        max-width: 850px;
+        margin: auto;
+        background: linear-gradient(120deg, var(--teal-dark), var(--teal));
+        color: white;
+        border-radius: 24px;
+        padding: 42px 30px;
+        text-align: center;
+        box-shadow: 0 10px 28px rgba(24,94,101,.17);
+    }
+
+    .info-box h2 { margin-bottom: 12px; }
+    .info-box p { line-height: 1.8; }
+
+    footer {
+        background: var(--navy);
+        color: white;
+        text-align: center;
+        padding: 25px 15px;
+        margin-top: 20px;
+    }
+
+    footer p { font-size: 14px; opacity: .92; }
+
+    @media (max-width: 900px) {
+        .activity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        header { flex-direction: column; gap: 13px; }
+        nav { justify-content: center; }
+    }
+
+    @media (max-width: 600px) {
+        section { padding: 45px 5%; }
+        .activity-grid, .options, .stats { grid-template-columns: 1fr; }
+        .hero { padding: 60px 18px; }
+        .hero p { font-size: 16px; }
+        .challenge-box, .random-box { padding: 25px 18px; }
+        nav { gap: 4px; }
+        nav a { font-size: 13px; padding: 7px 9px; }
+        .section-title h2 { font-size: 26px; }
+    }
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header1>
+
+    <div class="logo">
+        🌈 Dunia Kita
+    </div>
+
+    <nav>
+
+        <a href="index.html" class="active">Home</a>
+
+        <a href="belajar.html">
+            Belajar
+        </a>
+
+        <a href="permainan.html">
+            Permainan
+        </a>
+
+        <a href="kuiz.html">
+            Kuiz
+        </a>
+
+        <a href="tips.html">
+            Tips
+        </a>
+
+        <a href="resipi.html">
+            Resipi
+        </a>
+		 <a href="my_hero_mosti.html">
+            My Hero
+        </a>
+ <a href="video.html">
+            Penerangan
+        </a>
+		<a href="qr.html">
+            QR Code
+        </a>
+
+        <a href="catatan.html">
+            Catatan
+        </a>
+
+    </nav>
+
+</header1>
+
+
+<style>
+:root{--mint:#DDF3F0;--teal:#247C83;--teal2:#3A9A98;--orange:#FFB86B;--cream:#FFF3D6;--navy:#293B50;--green:#21865f;--deep:#145b48;--line:#cce7dc}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+body{background:linear-gradient(135deg,#eaf8f2,#f7fcf9 58%,#fff7e9);color:var(--navy);line-height:1.65}
+header{background:linear-gradient(120deg,var(--teal),var(--teal2));color:#fff;text-align:center;padding:27px 18px 34px;border-radius:0 0 30px 30px;box-shadow:0 8px 24px #247c8326}
+.eyebrow{display:inline-block;background:#ffffff24;border:1px solid #ffffff66;border-radius:30px;padding:5px 14px;font-size:.78rem;font-weight:800;letter-spacing:.7px;margin-bottom:10px}
+header h1{font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.15}
+header p{max-width:760px;margin:10px auto 0;color:#eafff8}
+main{width:min(1080px,92%);margin:28px auto 48px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:23px;padding:20px;box-shadow:0 10px 28px #145b4810}
+.hero-copy{padding:8px}
+.hero-copy .tag{display:inline-block;background:var(--cream);color:#94601e;padding:5px 11px;border-radius:20px;font-size:.76rem;font-weight:800}
+.hero-copy h2{font-size:clamp(2rem,4vw,2.8rem);color:var(--deep);line-height:1.1;margin:12px 0 4px}
+.hero-copy .subtitle{font-weight:700;color:var(--teal);margin-bottom:12px}
+.hero-copy p{color:#53666a}
+.motto{margin-top:15px;padding:11px 14px;border-left:4px solid var(--orange);background:#fff5e4;border-radius:10px;color:#85551b;font-weight:800;font-style:italic}
+.hero-photo{width:100%;height:430px;object-fit:cover;object-position:center 23%;border-radius:18px;background:#dff5ec}
+.section-head{text-align:center;margin:32px 0 18px}
+.section-head span{display:inline-block;background:var(--mint);color:var(--teal);border-radius:30px;padding:5px 13px;font-size:.78rem;font-weight:800;letter-spacing:.4px}
+.section-head h2{font-size:1.65rem;color:var(--teal);margin-top:7px}
+.section-head p{color:#62736f;font-size:.94rem}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.card{background:#fff;border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:0 6px 18px #145b480b}
+.card h3{color:var(--deep);font-size:1rem;margin-bottom:7px}
+.card p{color:#52656a;font-size:.94rem}
+.card.wide{grid-column:1/-1;background:linear-gradient(110deg,#e5f6ed,#fff)}
+.power-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:13px}
+.power{background:#f1faf5;border:1px solid #d6eee1;border-radius:13px;padding:13px}
+.power b{display:block;color:var(--deep);margin-bottom:4px}
+.power small{color:#586c66;line-height:1.5}
+.yim{margin-top:28px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 8px 22px #145b480b}
+.yim h2{color:var(--teal);font-size:1.5rem;margin-bottom:8px}
+.yim p{color:#53666a;margin:7px 0}
+.yim-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:15px}
+.yim-item{background:#f2faf6;border-radius:13px;padding:13px;border:1px solid #dcefe5}
+.yim-item b{display:block;color:var(--deep);margin-bottom:3px}
+.yim a{color:var(--teal);font-weight:700}
+.source{font-size:.82rem;color:#71817d;margin-top:12px}
+
+@media(max-width:740px){.hero{grid-template-columns:1fr}.hero-photo{height:390px;object-position:center 20%}.grid{grid-template-columns:1fr}.card.wide{grid-column:auto}.power-grid,.yim-list{grid-template-columns:1fr}}
+</style>
+</head>
+<body><br>
+<header>
+ <div class="eyebrow">DUNIA KITA · KELAB STEM</div>
+ <h1>MY HERO AGENSI MOSTI</h1>
+ <p>Kenali adiwira rekaan yang mendapat inspirasi daripada semangat inovasi sosial dan inovasi akar umbi Yayasan Inovasi Malaysia.</p>
+</header>
+<main>
+
+ 
+ 
+ <section class="hero">
+  <div class="hero-copy">
+ 
+  
+   <h2>⚡ IDEASPARK</h2>
+
+   <p>Aiden merupakan seorang pencipta muda yang percaya bahawa setiap masalah mempunyai penyelesaian melalui kreativiti, ilmu dan inovasi. 
+   Dia melambangkan generasi muda Malaysia yang berani mencipta sesuatu yang baharu demi membantu masyarakat dan membina masa depan yang lebih baik.</p>
+   <div class="motto">“Dari Idea Menjadi Realiti!”</div>
+  </div>
+<img src="hero.jpeg" alt="Gambar saya" width="100%">
+ </section>
+
+ <div class="section-head">
+  <span>PROFIL SUPERHERO</span>
+  <h2>6 Ciri Utama IDEASPARK</h2>
+  <p>Watak dan kuasa ini ialah rekaan untuk aktiviti Kelab STEM.</p>
+ </div>
+ <section class="grid">
+  <article class="card">
+   <h3>👤 1. Alter Ego</h3>
+   <p><strong>Aiden</strong>, Seorang remaja yang kreatif, bijak dan mempunyai minat mendalam terhadap sains, teknologi serta reka cipta.</p>
+  </article>
+  <article class="card">
+   <h3>⚡ 2. Asal-usul Kuasa</h3>
+   <p>Mendapat kuasa daripada sebuah ciptaan prototaip pintar yang dibangunkan melalui gabungan kreativiti, ilmu sains dan teknologi inovasi.</p>
+  </article>
+  <article class="card wide">
+   <h3>🔥 3. Kuasa Utama</h3>
+   <p>Idea-to-Reality (Penjelmaan Idea). Berupaya menukarkan idea dan lakaran kepada model ciptaan 3D serta prototaip teknologi yang boleh membantu menyelesaikan masalah masyarakat.</p>
+   <div class="power-grid">
+ <!--   <div class="power"><b>Idea Scanner</b><small>Mengesan masalah di persekitaran melalui sensor dan mengumpul data asas.</small></div>
+    <div class="power"><b>Rapid Prototype</b><small>Mereka bentuk model penyelesaian menggunakan paparan hologram dan pencetak 3D mini.</small></div>
+    <div class="power"><b>Community Shield</b><small>Mengaktifkan sistem bantuan kecemasan dan tenaga sementara untuk kegunaan komuniti.</small></div>-->
+   </div>
+  </article>
+  <article class="card">
+   <h3>🛠️ 4. Gadget Teknologi</h3>
+   <p><strong>INNO-FORGE (Pemancar Inovasi Pintar)
+</strong> — Peranti penciptaan mudah alih yang menghasilkan hologram reka bentuk 3D dan membantu membina prototaip berdasarkan idea pengguna.
+</p>
+  </article>
+  <article class="card">
+   <h3>⚠️ 5. Kelemahan Saintifik</h3>
+   <p>Had Sumber dan Ketepatan.
+
+Setiap ciptaan memerlukan bahan mentah, tenaga dan pengujian. Tidak semua reka bentuk hologram boleh terus berfungsi sebagai produk sebenar tanpa pembinaan dan penambahbaikan.</p>
+  </article>
+
+ <article class="card wide">
+   <h3>🔥 6. Motto</h3>
+   <p>"Imagine, Create, Innovate."Maksud: Bayangkan, Cipta, Berinovasi.</p>
+   <div class="power-grid">
+ <!--   <div class="power"><b>Idea Scanner</b><small>Mengesan masalah di persekitaran melalui sensor dan mengumpul data asas.</small></div>
+    <div class="power"><b>Rapid Prototype</b><small>Mereka bentuk model penyelesaian menggunakan paparan hologram dan pencetak 3D mini.</small></div>
+    <div class="power"><b>Community Shield</b><small>Mengaktifkan sistem bantuan kecemasan dan tenaga sementara untuk kegunaan komuniti.</small></div>-->
+   </div>
+  </article>
+   </section>
+ <section class="yim">
+  <h2>🌱 Kenali Yayasan Inovasi Malaysia (YIM)</h2>
+  <p><strong>Yayasan Inovasi Malaysia (YIM)</strong> ialah yayasan/agensi pembangunan inovasi sosial dan akar umbi di bawah Kementerian Sains, Teknologi dan Inovasi (MOSTI). YIM ditubuhkan pada <strong>20 Oktober 2008</strong>.</p>
+  <div class="yim-list">
+   <div class="yim-item"><b>🎯 Peranan YIM</b><span>Mencari, membangun dan memadankan dana pembangunan inovasi serta membantu menggalakkan inovasi akar umbi yang berpotensi dikomersialkan.</span></div>
+   <div class="yim-item"><b>💡 Fokus</b><span>Menggunakan sains, teknologi dan penyelesaian inovatif untuk menangani cabaran masyarakat, meningkatkan kesejahteraan dan menyokong kelestarian alam.</span></div>
+   <div class="yim-item"><b>🚀 Misi</b><span>Mengembangkan dan mempromosikan kemahiran kreatif dalam bidang sains dan teknologi di peringkat akademik, industri dan masyarakat.</span></div>
+   <div class="yim-item"><b>🌍 Kumpulan sasaran</b><span>Antaranya kanak-kanak, belia, wanita, orang kurang upaya, komuniti luar bandar dan pertubuhan bukan kerajaan.</span></div>
+  </div>
+  <p class="source">Maklumat YIM diringkaskan daripada laman rasmi YIM. Watak InnoRex dan kuasanya ialah rekaan, bukan watak atau program rasmi YIM.</p>
+  <p><a href="https://yim.my/" target="_blank" rel="noopener">Layari laman rasmi Yayasan Inovasi Malaysia (YIM) ↗</a></p>
+ </section>
+</main>
+<footer>
+
+    <p>
+        © 2026 Dunia Kita 🌈
+        | Belajar • Bermain • Berkongsi
+    </p>
+
+</footer>
+</body>
+</html>
+
